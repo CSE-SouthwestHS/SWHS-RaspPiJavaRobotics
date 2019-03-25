@@ -34,18 +34,16 @@ public class MotorCommand
 		}
     }
     public static void init() {
-		try {
-            runTime.exec("gpio -g mode " + enA + " pwm");
-            runTime.exec("gpio -g pwm-ms");
-            runTime.exec("gpio -g pwmc 205"); 
-            runTime.exec("gpio -g pwmr " + pwmMax);
-            runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
-            runTime.exec("gpio -g mode " + enB + " pwm");
-            runTime.exec("gpio -g pwm " + enB + " " + pwmCurrent);
-			runTime.exec("gpio -g mode " + in1 + " out");
-			runTime.exec("gpio -g mode " + in2 + " out");
-			runTime.exec("gpio -g write " + in1 + " 1");
-			runTime.exec("gpio -g write " + in2 + " 0");
+	try {
+		runTime.exec("gpio -g mode " + enA + " pwm");
+		runTime.exec("gpio -g pwm-ms");
+		runTime.exec("gpio -g pwmc 205"); 
+		runTime.exec("gpio -g pwmr " + pwmMax);
+		runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
+		runTime.exec("gpio -g mode " + in1 + " out");
+		runTime.exec("gpio -g mode " + in2 + " out");
+		runTime.exec("gpio -g write " + in1 + " 1");
+		runTime.exec("gpio -g write " + in2 + " 0");
 		} catch (Exception e) {
             System.out.println("Exception occured: " + e.getMessage());
 		}
