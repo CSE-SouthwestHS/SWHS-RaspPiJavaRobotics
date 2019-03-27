@@ -3,12 +3,13 @@ import java.util.*;
 public class MotorCommand
 {
 	//in1 and in2 set direction as follows (1,1 = not used; 1,0 = forward; 0,1 = reverse; 0,0 = stop)
-  public static int in1 = 17;					//Sets the number of control pin 1 (controls direction) state is on or off 
+  public static int in1 = 2;					//Sets the number of control pin 1 (controls direction) state is on or off 
   public static boolean direction = true;		//Does not set direction, only tracks. Change boolean everytime direction flips
-  public static int in2 = 22;					//Sets the number of control pin 2 (controls direction) state is on or off
+  public static int in2 = 4;					//Sets the number of control pin 2 (controls direction) state is on or off
   public static int enA= 19;					//Sets the number of the pwm pin (controls motor speed)
   public static double pwmMax = 4000;			//Sets the maximum value the pwm pin can be set to
   public static double pwmCurrent = 0;			//Sets the initial value of the pwm pin
+  public static String MotorSide = "Not set!";
   public static Runtime runTime = Runtime.getRuntime();
   
   public static void main(String args[]) {
@@ -33,6 +34,14 @@ public class MotorCommand
 			}
 		}
     }
+    public MotorCommand(int pin1, int pin2, int setpwmPin, double Maxpwm, String side){
+	in1 = pin1;
+	in2 = pin2;
+	enA = setpwmPin;
+	pwmMax = Maxpwm;
+	MotorSide = side;
+	//init();
+    }
     public static void init() {
 	try {
 		runTime.exec("gpio -g mode " + enA + " pwm");
@@ -44,6 +53,7 @@ public class MotorCommand
 		runTime.exec("gpio -g mode " + in2 + " out");
 		runTime.exec("gpio -g write " + in1 + " 1");
 		runTime.exec("gpio -g write " + in2 + " 0");
+		System.out.println(MotorSide);
 		} catch (Exception e) {
             System.out.println("Exception occured: " + e.getMessage());
 		}
@@ -89,6 +99,7 @@ public class MotorCommand
 	public static void speed() {
 		Scanner speedScanner = new Scanner(System.in);
 		System.out.println("Enter a range between -1 and 1.");
+		System.out.println(MotorSide);
 		try {
 			double speedInput = speedScanner.nextDouble();
 			variableSpeed(speedInput);
