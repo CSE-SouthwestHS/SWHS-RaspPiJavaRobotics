@@ -11,8 +11,8 @@ public class MotorController {
 	static Scanner userInputScanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		MotorCommand motorLeft = new MotorCommand(directionPin1, directionPin2, pwmPin, Maxpwm, "Left");
-	    MotorCommand motorRight = new MotorCommand(directionPin3, directionPin4, pwmPin2, Maxpwm, "Right");
+		Motor motorLeft = new Motor(directionPin1, directionPin2, pwmPin, Maxpwm, "Left");
+	    Motor motorRight = new Motor(directionPin3, directionPin4, pwmPin2, Maxpwm, "Right");
 		motorLeft.init();
 		motorRight.init();
 		while (true){
