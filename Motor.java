@@ -12,15 +12,17 @@ public class Motor
     private String MotorSide = "Not set!";
     private Runtime runTime = Runtime.getRuntime();
 
-  public Motor(int pin1, int pin2, int setpwmPin, double Maxpwm, String side){
+    //Creates a new instance of the Motor class with the input values set to their respective variables
+    public Motor(int pin1, int pin2, int setpwmPin, double Maxpwm, String side){
         in1 = pin1;
         in2 = pin2;
         enA = setpwmPin;
         pwmMax = Maxpwm;
         MotorSide = side;
         //init();
-  }
-  public void init() {
+    }
+    //Initializes the Motor based on the variables provided above
+    public void init() {
         try {
             runTime.exec("gpio -g mode " + enA + " pwm");
             runTime.exec("gpio -g pwm-ms");
@@ -36,7 +38,8 @@ public class Motor
             System.out.println("Exception occured: " + e.getMessage());
         }
     }
-  public void stop() {
+    //Sets the directional pins to zero and then the pwm pin to zero after which it sets the pins for going forwards
+    public void stop() {
         try {
             runTime.exec("gpio -g write " + in1 + " 0");
             runTime.exec("gpio -g write " + in2 + " 0");
@@ -48,8 +51,9 @@ public class Motor
         } catch (Exception e) {
             System.out.println("Exception occured: " + e.getMessage());
         }
-  }
-  public void speed() {
+    }
+    //Has a scanner request for a speed value to send along to the variableSpeed function
+    public void speed() {
         Scanner speedScanner = new Scanner(System.in);
         System.out.println("Enter a range between -1 and 1.");
         System.out.println(MotorSide);
@@ -59,7 +63,8 @@ public class Motor
         } catch (Exception e) {
             System.out.println("Error");
         }
-  }
+    }
+    //Takes in the speed variable and then determines the ramping method to ensure stable change in speed
     public void variableSpeed(double speed) {
         double finalSpeed = 0.0;
         double absoluteValueSpeed = 0.0;
@@ -69,7 +74,7 @@ public class Motor
             } else {
                 finalSpeed = speed*pwmMax;
                 absoluteValueSpeed = Math.abs(finalSpeed);
-                if ((!direction && finalSpeed < 0) || (direction && finalSpeed > 0)) {
+                if ((!direction && finalSpeed < 0) || (direction && finalSpeed > 0)) {      //checks to see the state of the direction boolean and the nature of the finalSpeed variable relative to zero to ensure that ramping from one direction to another is possible
                     if (finalSpeed < 0) {
                         ramp(0.0);
                         pwmCurrent = 0;
@@ -100,8 +105,9 @@ public class Motor
         } catch (Exception e) {
             System.out.println("Exception occured: " + e.getMessage());
         }
-  }
-  public void ramp(double directionalSpeed) {
+    }
+    //Uses the directionalSpeed variable to change the speed of the motor in an arbitrary fifty steps
+    public void ramp(double directionalSpeed) {
         double difference = 0.0, calculating = 0.0, stepNumber = 50.0;
         double tempSpeed = Math.abs(directionalSpeed);
         try {
@@ -115,8 +121,9 @@ public class Motor
         } catch (Exception e) {
              System.out.println("Exception occured: " + e.getMessage());
         }
-  }
-  public void forward() {
+    }
+    //Sets the Motor's directional pins for the forwards direction
+    public void forward() {
         try {
             runTime.exec("gpio -g write " + in1 + " 1");
             runTime.exec("gpio -g write " + in2 + " 0");
@@ -125,8 +132,9 @@ public class Motor
         } catch (Exception e) {
             System.out.println("Exception occured: " + e.getMessage());
         }
-   }
-  public void reverse() {
+    }
+    //Sets the Motor's directional pins as the opposite of the forward direction
+    public void reverse() {
         try {
             runTime.exec("gpio -g write " + in1 + " 0");
             runTime.exec("gpio -g write " + in2 + " 1");
@@ -135,5 +143,5 @@ public class Motor
         } catch (Exception e) {
             System.out.println("Exception occured: " + e.getMessage());
         }
-   }
+    }
 }
