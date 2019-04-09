@@ -6,14 +6,14 @@ public class Motor
     private int in1 = 2;                    //Sets the number of control pin 1 (controls direction) state is on or off 
     private boolean direction = true;       //Does not set direction, only tracks. Change boolean everytime direction flips
     private int in2 = 4;                    //Sets the number of control pin 2 (controls direction) state is on or off
-    private int enA= 19;                    //Sets the number of the pwm pin (controls motor speed)
-    private double pwmMax = 4000;           //Sets the maximum value the pwm pin can be set to
-    private double pwmCurrent = 0;          //Sets the initial value of the pwm pin
+    private int enA= 12;                    //Sets the number of the pwm pin (controls motor speed)
+    private float pwmMax = 4000;            //Sets the maximum value the pwm pin can be set to
+    private float pwmCurrent = 0;           //Sets the initial value of the pwm pin
     private String MotorSide = "Not set!";
     private Runtime runTime = Runtime.getRuntime();
 
     //Creates a new instance of the Motor class with the input values set to their respective variables
-    public Motor(int pin1, int pin2, int setpwmPin, double Maxpwm, String side){
+    public Motor(int pin1, int pin2, int setpwmPin, float Maxpwm, String side){
         in1 = pin1;
         in2 = pin2;
         enA = setpwmPin;
@@ -58,45 +58,45 @@ public class Motor
         System.out.println("Enter a range between -1 and 1.");
         System.out.println(MotorSide);
         try {
-            double speedInput = speedScanner.nextDouble();
+            float speedInput = speedScanner.nextFloat();
             variableSpeed(speedInput);
         } catch (Exception e) {
             MotorController.errorHandler(e);
         }
     }
     //Takes in the speed variable and then determines the ramping method to ensure stable change in speed
-    public void variableSpeed(double speed) {
-        double finalSpeed = 0.0;
-        double absoluteValueSpeed = 0.0;
+    public void variableSpeed(float speed) {
+        float finalSpeed = 0.0f;
+        float absoluteValueSpeed = 0.0f;
         try {
             if (speed > 1 || speed < -1) {
                 System.out.println("Please enter a value between 1 and -1");    //Add throw error
             } else {
-                finalSpeed = speed*pwmMax;
-                absoluteValueSpeed = Math.abs(finalSpeed);
+                finalSpeed = (float) speed*pwmMax;
+                absoluteValueSpeed = (float) Math.abs(finalSpeed);
                 if ((!direction && finalSpeed < 0) || (direction && finalSpeed > 0)) {      //checks to see the state of the direction boolean and the nature of the finalSpeed variable relative to zero to ensure that ramping from one direction to another is possible
                     if (finalSpeed < 0) {
-                        ramp(0.0);
+                        ramp(0.0f);
                         pwmCurrent = 0;
                         reverse();
-                        ramp(finalSpeed);
+                        ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
                         Thread.sleep(250);
                     } else {
-                        ramp(0.0);
+                        ramp(0.0f);
                         pwmCurrent = 0;
                         forward();
-                        ramp(finalSpeed);
+                        ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
                         Thread.sleep(250);
                     }
                 } else {
                     if (finalSpeed < 0) {
-                        ramp(finalSpeed);
+                        ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
                         Thread.sleep(250);
                     } else {
-                        ramp(finalSpeed);
+                        ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
                         Thread.sleep(250);
                     }
@@ -107,17 +107,19 @@ public class Motor
         }
     }
     //Uses the directionalSpeed variable to change the speed of the motor in an arbitrary fifty steps
-    public void ramp(double directionalSpeed) {
-        double difference = 0.0, calculating = 0.0, stepNumber = 50.0;
-        double tempSpeed = Math.abs(directionalSpeed);
+    public void ramp(float directionalSpeed) {
+        float difference = 0.0f, calculating = 0.0f, stepNumber = 50.0f;
         try {
-             difference = tempSpeed - pwmCurrent;
-             calculating = difference/stepNumber;
-             while(pwmCurrent != tempSpeed) {
-                 runTime.exec("gpio -g pwm "+ enA + " " + (pwmCurrent + calculating));
-                 pwmCurrent += calculating;
-                 Thread.sleep(20);
-             }
+            difference = directionalSpeed - pwmCurrent;
+            if(difference > (.3*pwmMax)){
+                calculating = difference/stepNumber;
+                while(pwmCurrent != directionalSpeed) {
+                    runTime.exec("gpio -g pwm "+ enA + " " + (pwmCurrent + calculating));
+                    System.out.println(pwmCurrent);
+                    pwmCurrent += calculating;
+                    Thread.sleep(20);
+                }
+            }
         } catch (Exception e) {
              MotorController.errorHandler(e);
         }

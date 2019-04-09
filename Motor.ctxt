@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=pin1\ pin2\ setpwmPin\ Maxpwm\ side
-comment0.target=Motor(int,\ int,\ int,\ double,\ java.lang.String)
+comment0.target=Motor(int,\ int,\ int,\ float,\ java.lang.String)
 comment1.params=
 comment1.target=void\ init()
 comment2.params=
@@ -8,9 +8,9 @@ comment2.target=void\ stop()
 comment3.params=
 comment3.target=void\ speed()
 comment4.params=speed
-comment4.target=void\ variableSpeed(double)
+comment4.target=void\ variableSpeed(float)
 comment5.params=directionalSpeed
-comment5.target=void\ ramp(double)
+comment5.target=void\ ramp(float)
 comment6.params=
 comment6.target=void\ forward()
 comment7.params=

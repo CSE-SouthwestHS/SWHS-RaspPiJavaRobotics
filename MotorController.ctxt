@@ -5,4 +5,6 @@ comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 comment2.params=ex
 comment2.target=void\ errorHandler(java.lang.Exception)
-numComments=3
+comment3.params=x\ y
+comment3.target=void\ speedAdapter(float,\ float)
+numComments=4
