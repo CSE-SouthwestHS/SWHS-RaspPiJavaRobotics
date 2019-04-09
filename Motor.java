@@ -35,7 +35,7 @@ public class Motor
             runTime.exec("gpio -g write " + in2 + " 0");
             System.out.println(MotorSide + " " + in1 + " " + in2 + " " + enA);
         } catch (Exception e) {
-            System.out.println("Exception occured: " + e.getMessage());
+            MotorController.errorHandler(e);
         }
     }
     //Sets the directional pins to zero and then the pwm pin to zero after which it sets the pins for going forwards
@@ -49,7 +49,7 @@ public class Motor
             forward();
             Thread.sleep(250);
         } catch (Exception e) {
-            System.out.println("Exception occured: " + e.getMessage());
+            MotorController.errorHandler(e);
         }
     }
     //Has a scanner request for a speed value to send along to the variableSpeed function
@@ -61,7 +61,7 @@ public class Motor
             double speedInput = speedScanner.nextDouble();
             variableSpeed(speedInput);
         } catch (Exception e) {
-            System.out.println("Error");
+            MotorController.errorHandler(e);
         }
     }
     //Takes in the speed variable and then determines the ramping method to ensure stable change in speed
@@ -103,7 +103,7 @@ public class Motor
             }
         }
         } catch (Exception e) {
-            System.out.println("Exception occured: " + e.getMessage());
+            MotorController.errorHandler(e);
         }
     }
     //Uses the directionalSpeed variable to change the speed of the motor in an arbitrary fifty steps
@@ -119,7 +119,7 @@ public class Motor
                  Thread.sleep(20);
              }
         } catch (Exception e) {
-             System.out.println("Exception occured: " + e.getMessage());
+             MotorController.errorHandler(e);
         }
     }
     //Sets the Motor's directional pins for the forwards direction
@@ -130,7 +130,7 @@ public class Motor
             direction = false;
             Thread.sleep(250);
         } catch (Exception e) {
-            System.out.println("Exception occured: " + e.getMessage());
+            MotorController.errorHandler(e);
         }
     }
     //Sets the Motor's directional pins as the opposite of the forward direction
@@ -141,7 +141,7 @@ public class Motor
             direction = true;
             Thread.sleep(250);
         } catch (Exception e) {
-            System.out.println("Exception occured: " + e.getMessage());
+            MotorController.errorHandler(e);
         }
     }
 }
