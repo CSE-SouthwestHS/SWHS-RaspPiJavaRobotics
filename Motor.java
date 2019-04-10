@@ -4,11 +4,12 @@ public class Motor
 {
     //in1 and in2 set direction as follows (1,1 = not used; 1,0 = forward; 0,1 = reverse; 0,0 = stop)
     private int in1 = 2;                    //Sets the number of control pin 1 (controls direction) state is on or off 
-    private boolean direction = true;       //Does not set direction, only tracks. Change boolean everytime direction flips
+    private boolean direction = false;       //Does not set direction, only tracks. Change boolean everytime direction flips
     private int in2 = 4;                    //Sets the number of control pin 2 (controls direction) state is on or off
     private int enA= 12;                    //Sets the number of the pwm pin (controls motor speed)
     private float pwmMax = 4000;            //Sets the maximum value the pwm pin can be set to
     private float pwmCurrent = 0;           //Sets the initial value of the pwm pin
+    private float rampRequire = .3f;
     private String MotorSide = "Not set!";
     private Runtime runTime = Runtime.getRuntime();
 
@@ -19,7 +20,6 @@ public class Motor
         enA = setpwmPin;
         pwmMax = Maxpwm;
         MotorSide = side;
-        //init();
     }
     //Initializes the Motor based on the variables provided above
     public void init() {
@@ -44,7 +44,6 @@ public class Motor
             runTime.exec("gpio -g write " + in1 + " 0");
             runTime.exec("gpio -g write " + in2 + " 0");
             runTime.exec("gpio -g pwm "+ enA + " 0");
-            direction = false;
             pwmCurrent = 0;
             forward();
             Thread.sleep(250);
@@ -74,30 +73,39 @@ public class Motor
             } else {
                 finalSpeed = (float) speed*pwmMax;
                 absoluteValueSpeed = (float) Math.abs(finalSpeed);
+                System.out.println("DEBUG: finalSpeed " + finalSpeed + ", " + absoluteValueSpeed);
                 if ((!direction && finalSpeed < 0) || (direction && finalSpeed > 0)) {      //checks to see the state of the direction boolean and the nature of the finalSpeed variable relative to zero to ensure that ramping from one direction to another is possible
                     if (finalSpeed < 0) {
+                        System.out.println("DEBUG: variableSpeed A");
                         ramp(0.0f);
                         pwmCurrent = 0;
                         reverse();
                         ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
+                        runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     } else {
+                        System.out.println("DEBUG: variableSpeed B");
                         ramp(0.0f);
                         pwmCurrent = 0;
                         forward();
                         ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
+                        runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     }
                 } else {
                     if (finalSpeed < 0) {
+                        System.out.println("DEBUG: variableSpeed C");
                         ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
+                        runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     } else {
+                        System.out.println("DEBUG: variableSpeed D");
                         ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
+                        runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     }
             }
@@ -108,17 +116,33 @@ public class Motor
     }
     //Uses the directionalSpeed variable to change the speed of the motor in an arbitrary fifty steps
     public void ramp(float directionalSpeed) {
-        float difference = 0.0f, calculating = 0.0f, stepNumber = 50.0f;
+        float difference = 0.0f, calculating = 0.0f, stepNumber = 10.0f;
         try {
             difference = directionalSpeed - pwmCurrent;
-            if(difference > (.3*pwmMax)){
+            if(Math.abs(difference) > (rampRequire*pwmMax)){
                 calculating = difference/stepNumber;
+                boolean valueIncreasing = calculating > 0;
+                System.out.println("Starting Move From " + pwmCurrent + " To " + directionalSpeed + ", Step Size: " + calculating);
                 while(pwmCurrent != directionalSpeed) {
+                    if(valueIncreasing) {
+                        if(pwmCurrent >= directionalSpeed) {
+                            runTime.exec("gpio -g pwm "+ enA + " " + directionalSpeed);
+                            break;
+                        }
+                    } else {
+                        if(pwmCurrent <= directionalSpeed) {
+                            runTime.exec("gpio -g pwm "+ enA + " " + directionalSpeed);
+                            break;
+                        }
+                    }
                     runTime.exec("gpio -g pwm "+ enA + " " + (pwmCurrent + calculating));
                     System.out.println(pwmCurrent);
                     pwmCurrent += calculating;
                     Thread.sleep(20);
                 }
+            } else{
+                System.out.println("Set " + directionalSpeed);
+                //Ramping not required
             }
         } catch (Exception e) {
              MotorController.errorHandler(e);

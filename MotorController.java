@@ -20,21 +20,31 @@ public class MotorController {
     public static void main(String[] args) { //This Is a Temporary Startup Function
         Startup.run();
         // Begin demo code
-        speedAdapter(50, 25);
+        speedAdapter(0, 0);
         while (true){
-            motorLeft.speed();
-            motorRight.speed();
+            Scanner speedScanner = new Scanner(System.in);
+            System.out.println("Enter x y co-ordiates");
+            //motorLeft.speed();
+            //motorRight.speed();
+            try {
+                float xInput = speedScanner.nextFloat();
+                float yInput = speedScanner.nextFloat();
+                speedAdapter(xInput, yInput);
+            } catch (Exception e) {
+                MotorController.errorHandler(e);
+            }
         }
     }
     public static void errorHandler(Exception ex) {
         System.out.println("Exception occured: " + ex.getMessage());
     }
     public static void speedAdapter(float x, float y){
-        x = 0 - x;
-        float v = (50-Math.abs(x))*(y/50) + y;
-        float w = (50-Math.abs(y))*(x/50) + x; 
+        float xInvert = -x;
+        float v = (50-Math.abs(xInvert))*(y/50) + y;
+        float w = (50-Math.abs(y))*(xInvert/50) + xInvert;
         float r = (v+w)/100;
         float l = (v-w)/100;
+        System.out.println(l + " " + r);
         motorLeft.variableSpeed(l);
         motorRight.variableSpeed(r);
     }
