@@ -37,11 +37,23 @@ public class MotorController {
         System.out.println("Exception occured: " + ex.getMessage());
     }
     public static void speedAdapter(float x, float y) {
+        if(x > 100){
+            x = 100f;
+        }
+        if(x < -100){
+            x = -100f;
+        }
+        if(y > 100){
+            y = 100f;
+        }
+        if(y < -100){
+            y = -100f;
+        }
         float xInvert = -x;
-        float v = (50-Math.abs(xInvert))*(y/50) + y;
-        float w = (50-Math.abs(y))*(xInvert/50) + xInvert;
-        float r = (v+w)/100;
-        float l = (v-w)/100;
+        float v = (100-Math.abs(xInvert))*(y/100) + y;
+        float w = (100-Math.abs(y))*(xInvert/100) + xInvert;
+        float r = (v+w)/200;
+        float l = (v-w)/200;
         System.out.println(l + " " + r);
         Thread threadL = new Thread(new Runnable() {
            @Override 

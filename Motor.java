@@ -38,31 +38,6 @@ public class Motor
             MotorController.errorHandler(e);
         }
     }
-    //Sets the directional pins to zero and then the pwm pin to zero after which it sets the pins for going forwards
-    public void stop() {
-        try {
-            runTime.exec("gpio -g write " + in1 + " 0");
-            runTime.exec("gpio -g write " + in2 + " 0");
-            runTime.exec("gpio -g pwm "+ enA + " 0");
-            pwmCurrent = 0;
-            forward();
-            Thread.sleep(250);
-        } catch (Exception e) {
-            MotorController.errorHandler(e);
-        }
-    }
-    //Has a scanner request for a speed value to send along to the variableSpeed function
-    public void speed() {
-        Scanner speedScanner = new Scanner(System.in);
-        System.out.println("Enter a range between -1 and 1.");
-        System.out.println(MotorSide);
-        try {
-            float speedInput = speedScanner.nextFloat();
-            variableSpeed(speedInput);
-        } catch (Exception e) {
-            MotorController.errorHandler(e);
-        }
-    }
     //Takes in the speed variable and then determines the ramping method to ensure stable change in speed
     public void variableSpeed(float speed) {
         float finalSpeed = 0.0f;
