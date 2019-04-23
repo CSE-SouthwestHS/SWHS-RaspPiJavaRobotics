@@ -32,13 +32,20 @@
   		</iframe>
     </div>
 		<script>
+    var lastCoordinates = document.getElementById('coordinatesXY').value;
 			console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
 			var joystick	= new VirtualJoystick({
 				container	: document.getElementById('container'),
 				mouseSupport	: true,
 			});
 			setInterval(function(){
-				document.getElementById('coordinatesXY').innerHTML = joystick.deltaX()+','+joystick.deltaY()*(-1)
+				document.getElementById('coordinatesXY').value = joystick.deltaX()+','+joystick.deltaY()*(-1);
+        newCoordinates = document.getElementById('coordinatesXY').value;
+        if (newCoordinates == lastCoordinates){
+        } else {
+          send();
+          lastCoordinates = newCoordinates;
+        }
       }, 1/30 * 1000);
 		</script>
   </body>
