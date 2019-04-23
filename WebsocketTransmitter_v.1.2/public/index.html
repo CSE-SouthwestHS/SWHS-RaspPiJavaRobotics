@@ -16,13 +16,16 @@
           statusData = document.getElementById("status").value,
           socket = io('http://localhost:5000');
         socket.emit('connection', {xyCoordinates: xy});
-        document.getElementById("status").innerHTML = statusData+'\n'+xy;
+        /*
+        Textbox for logging client side joystick values.
+        To view textareas : change css, #coordinatesXY and #status remove "display: none";
+        */
+        //document.getElementById("status").innerHTML = statusData+'\n'+xy;
       }
     </script>
 	</head>
 	<body>
     <textarea id="coordinatesXY"></textarea>
-    <input type="button" id="TestButton" onclick="send()"/>
     <textarea id="status" readonly="readonly"></textarea>
 		<div id="container">
       <canvas width="60" height="60" style="position: absolute; left: 202px; top: 180px; display: none;"></canvas>
@@ -46,7 +49,7 @@
           send();
           lastCoordinates = newCoordinates;
         }
-      }, 1/30 * 1000);
+      }, 30);
 		</script>
   </body>
 </html>
