@@ -21,7 +21,7 @@
     </script>
 	</head>
 	<body>
-    <input type="text" id="coordinatesXY" size="9"/>
+    <textarea id="coordinatesXY"></textarea>
     <input type="button" id="TestButton" onclick="send()"/>
     <textarea id="status" readonly="readonly"></textarea>
 		<div id="container">
@@ -38,7 +38,7 @@
 				mouseSupport	: true,
 			});
 			setInterval(function(){
-				document.getElementById('coordinatesXY').value = joystick.deltaX()+','+joystick.deltaY()*(-1)
+				document.getElementById('coordinatesXY').innerHTML = joystick.deltaX()+','+joystick.deltaY()*(-1)
       }, 1/30 * 1000);
 		</script>
   </body>
