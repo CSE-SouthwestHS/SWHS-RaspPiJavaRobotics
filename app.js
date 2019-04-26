@@ -1,8 +1,9 @@
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app)
-var url = require('url')
-var fs = require('fs')
-var startUpCode = Java.type();
+var app = require('http').createServer(handler),
+    io = require('socket.io')(app),
+    url = require('url'),
+    fs = require('fs'),
+    x = 2;
+//var startUpCode = Java.type();
 //This will open a server at localhost:5000. Navigate to this in your browser.
 app.listen(5000);
 // Http handler function
@@ -41,7 +42,12 @@ io.sockets.on('connection', function (socket) {
   // If we recieved a command from a client
   socket.on('connection', function(data){
 	  transmitterData = data["transmitterData"];
-	  console.log(transmitterData);
+    var coordinates = transmitterData.split(',', 2),
+        x = coordinates[0],
+        y = coordinates[1];
+    console.log(x);
+    console.log(y);
+    print (x+','+y);
     // Set a timer for when we should stop
     setTimeout(function(){
       socket.emit('connection');
