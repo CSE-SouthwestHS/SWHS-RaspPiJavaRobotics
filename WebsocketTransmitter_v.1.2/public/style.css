@@ -2,13 +2,13 @@ body{
   overflow: hidden;
   padding: 0;
   margin: 0;
-  background-color: #222;
+  background-color: #151B30;
 }
-#coordinatesXY{
+#XYvalues{
   border: none;
   top:0;
   color: white;
-  background: grey;
+  background: #50667F;
   width: auto;
   height: auto;
   padding: 0;
@@ -25,33 +25,42 @@ body{
   -moz-user-select: none;
 }
 #status{
-  background: white;
+  resize: none;
+  position: absolute;
+  background: transparent;
   border: none;
-  width: auto;
-  height: auto;
-  color: black;
-  display: none;
+  height: 50%;
+  color: #5E7999;
+  /*display: none;*/
 }
-@media (min-width:530px){
+#picam{
+  position: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #3B4282;
+}
+@media(min-width:530px){
   #picam{
-    position: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     width: 320px;
     height: 240px;
-    border: 2px solid #F42954;
+  }
+  #status{
+    width: 15%;
+    min-width: 55px;
+    height: 240px;
   }
 }
 @media(max-width:530px){
   #picam{
-    position: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-right: 35px;
     zoom: 0.85;
     width: 272px;
     height: 204px;
-    border: 2px solid #F42954;
+  }
+  #status{
+    width: 17%;
+    min-width: 95px;
+    height: 173px;
   }
 }

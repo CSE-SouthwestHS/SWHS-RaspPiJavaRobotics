@@ -12,20 +12,20 @@
         document.getElementById("status").innerHTML = "Connected";
       });
       function send(){
-        xy = document.getElementById("coordinatesXY").value,
+        xy = document.getElementById("XYvalues").value,
           statusData = document.getElementById("status").value,
           socket = io('http://localhost:5000');
-        socket.emit('connection', {xyCoordinates: xy});
+        socket.emit('connection', {transmitterData: xy});
         /*
         Textbox for logging client side joystick values.
-        To view textareas : change css, #coordinatesXY and #status remove "display: none";
+        To view textareas : change css, #XYvalues and #status remove "display: none";
         */
-        //document.getElementById("status").innerHTML = statusData+'\n'+xy;
+        document.getElementById("status").innerHTML = statusData+'\n'+xy;
       }
     </script>
 	</head>
 	<body>
-    <textarea id="coordinatesXY"></textarea>
+    <textarea id="XYvalues"></textarea>
     <textarea id="status" readonly="readonly"></textarea>
 		<div id="container">
       <canvas width="60" height="60" style="position: absolute; left: 202px; top: 180px; display: none;"></canvas>
@@ -35,19 +35,21 @@
   		</iframe>
     </div>
 		<script>
-    var lastCoordinates = document.getElementById('coordinatesXY').value;
+    var lastCoordinates = document.getElementById('XYvalues').value,
+        textarea = document.getElementById('status');
 			console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
 			var joystick	= new VirtualJoystick({
-				container	: document.getElementById('container'),
-				mouseSupport	: true,
+				container: document.getElementById('container'),
+				mouseSupport: true,
 			});
 			setInterval(function(){
-				document.getElementById('coordinatesXY').value = joystick.deltaX()+','+joystick.deltaY()*(-1);
-        newCoordinates = document.getElementById('coordinatesXY').value;
+				document.getElementById('XYvalues').value = joystick.deltaX()+','+joystick.deltaY()*(-1);
+        newCoordinates = document.getElementById('XYvalues').value;
         if (newCoordinates == lastCoordinates){
         } else {
           send();
           lastCoordinates = newCoordinates;
+          textarea.scrollTop = textarea.scrollHeight;
         }
       }, 30);
 		</script>
