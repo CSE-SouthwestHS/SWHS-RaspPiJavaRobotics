@@ -2,6 +2,7 @@ var app = require('http').createServer(handler)
 var io = require('socket.io')(app)
 var url = require('url')
 var fs = require('fs')
+var startUpCode = Java.type();
 //This will open a server at localhost:5000. Navigate to this in your browser.
 app.listen(5000);
 // Http handler function
