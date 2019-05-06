@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 public class cli {
 	public static void main(String args[]) throws SocketException, UnknownHostException, IOException {
 
-		String bundle;
+		String message;
 		Socket s1 = null;
 		try {
 			while(true) {
@@ -22,11 +22,16 @@ public class cli {
 				BufferedReader in = new BufferedReader(new InputStreamReader(s1.getInputStream()));
 				String messageFromServer = in.readLine();
 				//System.out(messageFromServer);
-				System.out.println("enter any string: " + messageFromServer + "\n");
-				bundle = sc.nextLine();
+				if (messageFromServer == null){
+					System.out.println("Server Closed");
+					System.exit(0);
+				} else {
+					System.out.println("enter any string: " + messageFromServer + "\n");
+				}
+				message = sc.nextLine();
 				PrintStream p1 = new PrintStream(s1.getOutputStream());
-				p1.println(bundle);
-				System.out.print(bundle);
+				p1.println(message);
+				System.out.print(message);
 			}
 		} catch (SocketException e) {
 			//e.printStackTrace();

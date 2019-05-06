@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
@@ -13,87 +12,55 @@ import java.io.PrintWriter;
 
 public class ser {
 	
-	public static void main(String[] args) throws IOException  {
-		/* String str1 ;
-		ServerSocket s = new ServerSocket(1341);
-		
-		while(true){
-		Socket ss=s.accept();
-		
-		BufferedReader in = new BufferedReader(new InputStreamReader(ss.getInputStream()));
-		out = new PrintWriter(socket.getOutputStream());
-		str = in.readLine();
-		System.out.println(str); */
-		String str;
-		String bundle;
-		ServerSocket s; 
-		s = new ServerSocket(5000);
-		Socket ss;
-		
-		while(true){
-			
-		
-		PrintWriter out;
-		ss = s.accept();
-		System.out.println("connected \n");
-		BufferedReader in = new BufferedReader(new InputStreamReader(ss.getInputStream()));
-		Scanner sc=new Scanner(System.in);
-		out = new PrintWriter(ss.getOutputStream(), true);
-		System.out.println("enter any string: ");
-		bundle = sc.nextLine();
-		out.println(bundle);
-		str = in.readLine();
-		System.out.println(str);
-		}
-			/*try {
-		        serverSocket = new ServerSocket(1341);
-		        System.out.println("Waiting for Clients " + " \n");
-	
-		        //Reading message from the client
-		        socket = serverSocket.accept();
-	
-		        textArea.append("Client Connected " + "\n");
-	
-		        //Send message to client 
-		        //out = new PrintWriter(socket.getOutputStream());
-		        out = new PrintWriter(socket.getOutputStream(), true);
-		        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		        while (true)
-		        {        
-	
-		            messageFromClient = in.readLine();
-		            whileChat(messageFromClient); 
-		        }
-		    } catch(IOException ioExecption) {
-		        ioExecption.printStackTrace();
-		    }
-		
-	
-		private void whileChat(String messageFromClient) {
-		    showMessage(messageFromClient);
-		    System.out.println("Message from client : " + messageFromClient);
-		}
-	
-		protected static void showMessage(final String message) {
-		    SwingUtilities.invokeLater( 
-		    new Runnable(){
-		        public void run()
-		        {
-		            System.out.println(message + "\n");
-		        }
-		    });
-		}
-	
-		public static void sendMessage(String message) {
-		    out.println(message);
-		    System.out.println(name +  " : " + message + "\n");
-		}*/		
-		
-		
-		
-		
+	public static void main(String[] args) throws IOException, InterruptedException {
+		new Thread(new SimpleServer()).start();
 	}
+	static class SimpleServer implements Runnable {
+		public void run(){
+			ServerSocket socketServer = null;
+			Socket socket = null;
+			String str;
+			String message;
+			BufferedReader in = null;
+			PrintWriter out = null;
+			int PORT = 5000;
+			int USERS = 0;
+			try {
+				socketServer = new ServerSocket(PORT);
+				System.out.println("Listening on Port: " + PORT);
 
-	
+				while(true){
+					try{
+						Socket serverSession = socketServer.accept();
+						Scanner socketScanner = new Scanner(System.in);
+						in = new BufferedReader(new InputStreamReader(serverSession.getInputStream()));
+						out = new PrintWriter(serverSession.getOutputStream(), true);
+						System.out.println("Client Connected");
+						System.out.println("Enter any string: ");
+						message = socketScanner.nextLine();
+						out.println(message);
+						str = in.readLine();
+						System.out.println(str);
+					} catch(IOException e){
+						//e.printStackTrace();
+						System.out.print("Session Ended\n");
+						USERS = 0;
+					}
 
+				}
+			} catch (IOException e1) {
+				//e1.printStackTrace();
+				System.out.print("Server Active \n");
+			} finally {
+				try {
+					if (socketServer != null) {
+						socketServer.close();
+					}
+				} catch (IOException e) {
+					//e.printStackTrace();
+					System.out.print("Can't Create Server \n");
+				}
+			}
+		}
+	}
 }
