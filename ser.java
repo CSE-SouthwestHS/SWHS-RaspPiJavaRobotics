@@ -16,36 +16,49 @@ public class ser {
 		new Thread(new SimpleServer()).start();
 	}
 	static class SimpleServer implements Runnable {
+
 		public void run(){
+
 			ServerSocket socketServer = null;
 			Socket socket = null;
-			String str;
-			String message;
+			String str = null;
+			String message = null;
 			BufferedReader in = null;
 			PrintWriter out = null;
 			int PORT = 5000;
-			int USERS = 0;
+			boolean Connected = false;
+			boolean Reported = false;
+
 			try {
 				socketServer = new ServerSocket(PORT);
 				System.out.println("Listening on Port: " + PORT);
+				Connected = true;
 
 				while(true){
-					try{
-						Socket serverSession = socketServer.accept();
-						Scanner socketScanner = new Scanner(System.in);
-						in = new BufferedReader(new InputStreamReader(serverSession.getInputStream()));
-						out = new PrintWriter(serverSession.getOutputStream(), true);
-						System.out.println("Client Connected");
-						System.out.println("Enter any string: ");
-						message = socketScanner.nextLine();
-						out.println(message);
-						str = in.readLine();
-						System.out.println(str);
+					try {
+						if (str == null){
+							Socket serverSession = socketServer.accept();
+							Scanner socketScanner = new Scanner(System.in);
+							in = new BufferedReader(new InputStreamReader(serverSession.getInputStream()));
+							out = new PrintWriter(serverSession.getOutputStream(), true);
+							if (Connected == true && Reported == false) {
+								System.out.println("Client Connected \n");
+								Reported = true;
+							}
+							System.out.println("Enter any string: ");
+							message = socketScanner.nextLine();
+							out.println(message);
+							System.out.println("\nWaiting for client...");
+							str = in.readLine();
+							System.out.println(str + "\n");
+							str = null;
+						}
 					} catch(IOException e){
 						//e.printStackTrace();
-						System.out.print("Session Ended\n");
-						USERS = 0;
+						System.out.print("Session Ended - - - - - - - - - -\n");
+						Reported = false;
 					}
+
 
 				}
 			} catch (IOException e1) {
