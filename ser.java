@@ -13,34 +13,21 @@ import java.io.InputStreamReader;
 public class ser {
 	
 	public static void main(String[] args) throws IOException  {
-		//int number1, temp1, number2, temp2;
+		String str1 /*,str3*/;
 		ServerSocket s1 = new ServerSocket(1341);
-		//ServerSocket s2 = new ServerSocket(1342);
+		//ServerSocket s3 = new ServerSocket(1343);
 		
 		while(true){
 		Socket ss1=s1.accept();
-		BufferedReader in = new BufferedReader(new InputStreamReader(ss1.getInputStream()));
-		String str = in.readLine();
-		//log.d(str);
-		System.out.println(str);
-		//Scanner sc1 = new Scanner(ss1.getInputStream());
-		//number1 = sc1.nextInt();
+		//Socket ss3=s3.accept();
+		BufferedReader in1 = new BufferedReader(new InputStreamReader(ss1.getInputStream()));
+		str1 = in1.readLine();
+		System.out.println(str1);
 		
-		/*temp1 = number1;
 		
-		PrintStream p1 = new PrintStream(ss1.getOutputStream());
-		p1.println(temp1);
-		System.out.println(number1);
-		
-		Socket ss2=s2.accept();
-		Scanner sc2 = new Scanner(ss2.getInputStream());
-		number2 = sc2.nextInt();
-		
-		temp2 = number2;
-		
-		PrintStream p2 = new PrintStream(ss2.getOutputStream());
-		p2.println(temp2);
-		System.out.println(number2);*/
+		//BufferedReader in3 = new BufferedReader(new InputStreamReader(ss3.getInputStream()));
+		//str3 = in3.readLine();
+		//System.out.println(str3);
 		}
 	}
 

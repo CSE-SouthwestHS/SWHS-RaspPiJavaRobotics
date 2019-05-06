@@ -14,28 +14,24 @@ public class cli {
 	public static void main(String args[]) throws UnknownHostException, IOException
 	{
 		while(true) {
-		String test;	
-		//int number1, temp1, number2, temp2;
+		String bundle;	
 		Scanner sc=new Scanner(System.in);
-		Socket s1 = new Socket("10.55.168.34", 1341);
+		Socket s1 = new Socket("10.55.170.99", 1341);
 		Scanner sc1 = new Scanner(s1.getInputStream());
-		System.out.println("enter any number(1): ");
-		test = "test";
-		//number1 = sc.nextInt();
+		System.out.println("enter any string: ");
+		bundle = sc.nextLine();
 		PrintStream p1= new PrintStream(s1.getOutputStream());
-		//p1.println(number1);
-		p1.println(test);
-		//temp1 = sc1.nextInt();
-		//System.out.print(temp1);
-		System.out.print(test);
-		//Socket s2 = new Socket("10.55.168.34", 1342);
-		//Scanner sc2 = new Scanner(s2.getInputStream());
-		//System.out.println("enter any number(2): ");
-		//number2 = sc.nextInt();
-		//PrintStream p2= new PrintStream(s2.getOutputStream());
-		//p2.println(number2);
-		//temp2 = sc2.nextInt();
-		//System.out.print(temp2);
+		p1.println(bundle);
+		System.out.print(bundle);
+		
+		/*String error;
+		Socket s3 = new Socket("192.168.101.90", 1343);
+		Scanner sc3 = new Scanner(s3.getInputStream());
+		System.out.println("enter any string(2): ");
+		error = sc.nextLine();
+		PrintStream p3= new PrintStream(s3.getOutputStream());
+		p1.println(error);
+		System.out.print(error);*/
 		}
 	}
 
