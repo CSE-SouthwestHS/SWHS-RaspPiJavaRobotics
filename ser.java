@@ -8,27 +8,90 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 
 public class ser {
 	
 	public static void main(String[] args) throws IOException  {
-		String str1 /*,str3*/;
-		ServerSocket s1 = new ServerSocket(1341);
-		//ServerSocket s3 = new ServerSocket(1343);
+		/* String str1 ;
+		ServerSocket s = new ServerSocket(1341);
 		
 		while(true){
-		Socket ss1=s1.accept();
-		//Socket ss3=s3.accept();
-		BufferedReader in1 = new BufferedReader(new InputStreamReader(ss1.getInputStream()));
-		str1 = in1.readLine();
-		System.out.println(str1);
+		Socket ss=s.accept();
 		
+		BufferedReader in = new BufferedReader(new InputStreamReader(ss.getInputStream()));
+		out = new PrintWriter(socket.getOutputStream());
+		str = in.readLine();
+		System.out.println(str); */
+		String str;
+		String bundle;
+		ServerSocket s; 
+		s = new ServerSocket(1341);
+		Socket ss;
 		
-		//BufferedReader in3 = new BufferedReader(new InputStreamReader(ss3.getInputStream()));
-		//str3 = in3.readLine();
-		//System.out.println(str3);
+		while(true){
+			
+		
+		PrintWriter out;
+		ss = s.accept();
+		System.out.println("connected \n");
+		BufferedReader in = new BufferedReader(new InputStreamReader(ss.getInputStream()));
+		Scanner sc=new Scanner(System.in);
+		out = new PrintWriter(ss.getOutputStream(), true);
+		System.out.println("enter any string: ");
+		bundle = sc.nextLine();
+		out.println(bundle);
+		str = in.readLine();
+		System.out.println(str);
 		}
+			/*try {
+		        serverSocket = new ServerSocket(1341);
+		        System.out.println("Waiting for Clients " + " \n");
+	
+		        //Reading message from the client
+		        socket = serverSocket.accept();
+	
+		        textArea.append("Client Connected " + "\n");
+	
+		        //Send message to client 
+		        //out = new PrintWriter(socket.getOutputStream());
+		        out = new PrintWriter(socket.getOutputStream(), true);
+		        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		        while (true)
+		        {        
+	
+		            messageFromClient = in.readLine();
+		            whileChat(messageFromClient); 
+		        }
+		    } catch(IOException ioExecption) {
+		        ioExecption.printStackTrace();
+		    }
+		
+	
+		private void whileChat(String messageFromClient) {
+		    showMessage(messageFromClient);
+		    System.out.println("Message from client : " + messageFromClient);
+		}
+	
+		protected static void showMessage(final String message) {
+		    SwingUtilities.invokeLater( 
+		    new Runnable(){
+		        public void run()
+		        {
+		            System.out.println(message + "\n");
+		        }
+		    });
+		}
+	
+		public static void sendMessage(String message) {
+		    out.println(message);
+		    System.out.println(name +  " : " + message + "\n");
+		}*/		
+		
+		
+		
+		
 	}
 
 	
