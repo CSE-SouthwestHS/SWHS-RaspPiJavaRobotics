@@ -27,7 +27,7 @@ public class ser {
 		String str;
 		String bundle;
 		ServerSocket s; 
-		s = new ServerSocket(1341);
+		s = new ServerSocket(5000);
 		Socket ss;
 		
 		while(true){
