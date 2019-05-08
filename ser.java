@@ -1,3 +1,86 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+
+public class ser {
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		new Thread(new SimpleServer()).start();
+	}
+	static class SimpleServer implements Runnable {
+
+		public void run(){
+
+			ServerSocket socketServer = null;
+			Socket serverSession = null;
+			//String str = null;
+			//String message = null;
+			BufferedReader in = null;
+			PrintWriter out = null;
+			int PORT = 5000;
+			boolean ServerOpen = false;
+			boolean Reported = false;
+
+			try {
+				socketServer = new ServerSocket(PORT);
+				System.out.println("Listening on Port: " + PORT);
+				ServerOpen = true;
+			} catch (IOException e1) {
+				//e1.printStackTrace();
+				System.out.print("Server Active \n");
+			}
+			while(ServerOpen == true){
+				if (serverSession == null){
+					try {
+						serverSession = socketServer.accept();
+						out = new PrintWriter(serverSession.getOutputStream(), true);
+						if (Reported == false){
+							out.println("Server Connected on Port: " + PORT);
+							Reported = false;
+						}
+					} catch (IOException e) {
+						System.out.println("Failed \n");
+						System.exit(-1);
+					}
+				}
+				try {
+					in = new BufferedReader(new InputStreamReader(serverSession.getInputStream()));
+				} catch (IOException e) {
+					out.println("Signal not received");
+					System.exit(-1);
+				}
+				StringBuilder sb = new StringBuilder();
+				String line = null;
+				try {
+					if ((line = in.readLine()) != null) {
+						sb.append(line);
+					}
+				} catch (IOException e) {
+					System.out.println("Bad data \n");
+					System.exit(-1);
+				}
+				if (line != null){
+					System.out.println(sb.toString());
+					//serverSession = null;
+				}
+				try {
+					if (in.readLine() == null){
+						serverSession = null;
+						System.out.println("Client Disconected");
+					}
+				} catch (IOException e) {
+					System.out.println("Bad data \n");
+					System.exit(-1);
+				}
+			}
+		}
+	}
+}
+/*
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
@@ -11,7 +94,7 @@ import java.io.PrintWriter;
 
 
 public class ser {
-	
+
 	public static void main(String[] args) throws IOException, InterruptedException {
 		new Thread(new SimpleServer()).start();
 	}
@@ -77,3 +160,5 @@ public class ser {
 		}
 	}
 }
+
+ */
