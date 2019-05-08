@@ -1,4 +1,4 @@
-
+/*
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,7 +9,7 @@ public class ClientListener {
 
     public static void ClientListener() {
         //Establishes server objects
-        String ip = "10.55.160.1";
+        String ip = "10.55.162.1";
         int port = 5000;
         //ServerSocket serverSocket = null;
         Socket socket = null;
@@ -27,7 +27,7 @@ public class ClientListener {
             ServerOpen = true;
         }catch(IOException e){
             e.printStackTrace();
-        }*/
+        }*//*
 
 
         while(ServerOpen == true) {
@@ -68,7 +68,7 @@ public class ClientListener {
             }
         }
     }
-}
+}*/
 
 
 /*
@@ -124,7 +124,6 @@ public class NodeJsEcho {
 
 
 
-/*
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -142,7 +141,7 @@ public class ClientListener {
         try{
             //Creates new server
             serverSocket = new ServerSocket(5000);
-            System.out.println("Server: OPEN"+ serverSocket);
+            System.out.println("Server: OPEN");
             // Opens Listener
             ServerOpen = true;
         }catch(IOException e){
@@ -153,7 +152,7 @@ public class ClientListener {
             if(socket == null) {
                 try {
                     socket = serverSocket.accept();
-                    System.out.println("Connected");
+                    //System.out.println("Connected");
                 } catch (IOException e) {
                     System.out.println("Failed \n");
                     System.exit(-1);
@@ -181,4 +180,3 @@ public class ClientListener {
         }
     }
 }
- */
