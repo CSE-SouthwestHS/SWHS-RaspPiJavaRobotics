@@ -1,8 +1,13 @@
-## Welcome to GitHub Pages
+## SWHS-RaspPiJavaRobotics
 
-You can use the [editor on GitHub](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Presented by [CSE-SouthwestHS](https://github.com/CSE-SouthwestHS)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+To our knowledge, this is the first ever project based robotics curriculum for both AP computer science applications test prep and robotics.
+
+These materials where developed by the southwest high school computer science students:
+
+- @Themis3000 web development and rasp pi OS deployment and configuration
+- []
 
 ### Markdown
 
