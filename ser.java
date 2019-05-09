@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 public class ser {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		new Thread(new SimpleServer()).start();
+		new Thread(new SimpleServer()).start(); //starts server
 	}
 	static class SimpleServer implements Runnable {
 
@@ -29,7 +29,7 @@ public class ser {
 			boolean Connected = false;
 			boolean Reported = false;
 
-			try {
+			try { //if cant make server doesnt break, just logs errors, must be in server
 				socketServer = new ServerSocket(PORT); //set up server
 				System.out.println("Listening on Port: " + PORT);
 				Connected = true;
@@ -53,7 +53,7 @@ public class ser {
 							System.out.println(str + "\n");
 							str = null;
 						}
-			//the rest handles errors			
+			//the rest handles errors
 					} catch(IOException e){
 						System.out.print("Session Ended - - - - - - - - - -\n");
 						Reported = false;
