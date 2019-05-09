@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 
 public class ser {
-	
+
 	public static void main(String[] args) throws IOException, InterruptedException {
 		new Thread(new SimpleServer()).start();
 	}
@@ -30,7 +30,7 @@ public class ser {
 			boolean Reported = false;
 
 			try {
-				socketServer = new ServerSocket(PORT);
+				socketServer = new ServerSocket(PORT); //set up server
 				System.out.println("Listening on Port: " + PORT);
 				Connected = true;
 
@@ -38,23 +38,23 @@ public class ser {
 					try {
 						if (str == null){
 							Socket serverSession = socketServer.accept();
-							Scanner socketScanner = new Scanner(System.in);
-							in = new BufferedReader(new InputStreamReader(serverSession.getInputStream()));
-							out = new PrintWriter(serverSession.getOutputStream(), true);
+							Scanner socketScanner = new Scanner(System.in); //scanner reads input typed into terminal
+							in = new BufferedReader(new InputStreamReader(serverSession.getInputStream())); //handles input stream from client
+							out = new PrintWriter(serverSession.getOutputStream(), true); // sets up sending string to client
 							if (Connected == true && Reported == false) {
 								System.out.println("Client Connected \n");
 								Reported = true;
 							}
 							System.out.println("Enter any string: ");
 							message = socketScanner.nextLine();
-							out.println(message);
+							out.println(message); //pushes string out to client
 							System.out.println("\nWaiting for client...");
 							str = in.readLine();
 							System.out.println(str + "\n");
 							str = null;
 						}
+			//the rest handles errors			
 					} catch(IOException e){
-						//e.printStackTrace();
 						System.out.print("Session Ended - - - - - - - - - -\n");
 						Reported = false;
 					}
@@ -62,7 +62,6 @@ public class ser {
 
 				}
 			} catch (IOException e1) {
-				//e1.printStackTrace();
 				System.out.print("Server Active \n");
 			} finally {
 				try {
@@ -70,7 +69,6 @@ public class ser {
 						socketServer.close();
 					}
 				} catch (IOException e) {
-					//e.printStackTrace();
 					System.out.print("Can't Create Server \n");
 				}
 			}

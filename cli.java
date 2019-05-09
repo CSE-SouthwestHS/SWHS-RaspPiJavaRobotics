@@ -1,3 +1,5 @@
+//we hope to replace this with javascript
+
 import java.util.Scanner;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,15 +15,17 @@ import java.io.InputStreamReader;
 public class cli {
 	public static void main(String args[]) throws SocketException, UnknownHostException, IOException {
 
-		String message;
-		Socket s1 = null;
+		String IP = "localhost"; //enter the ip of the computer where the server is hosted, can use localhost
+		String message; //initialization of string that will be set from client, then printed
+		Socket s1 = null; //initialization of socket variable
 		try {
 			while(true) {
-				s1 = new Socket("127.0.0.1", 5000);
-				Scanner sc = new Scanner(System.in);
-				BufferedReader in = new BufferedReader(new InputStreamReader(s1.getInputStream()));
+				s1 = new Socket(IP, 5000); //set ip and port for socket connection
+				Scanner sc = new Scanner(System.in); //scanner reads input typed into terminal
+				BufferedReader in = new BufferedReader(new InputStreamReader(s1.getInputStream())); //handles input stream from server
 				String messageFromServer = in.readLine();
-				//System.out(messageFromServer);
+
+				//the rest handles errors
 				if (messageFromServer == null){
 					System.out.println("Server Closed");
 					System.exit(0);
@@ -34,20 +38,16 @@ public class cli {
 				System.out.print(message);
 			}
 		} catch (SocketException e) {
-			//e.printStackTrace();
 			System.out.print("Connection Failed \n");
 		} catch (UnknownHostException e) {
-			//e.printStackTrace();
 			System.out.print("Connection Failed \n");
 		} catch (IOException e) {
-			//e.printStackTrace();
 			System.out.print("Server Failed \n ");
 		} finally {
 			try {
 				if (s1 != null)
-					s1.close();
+					s1.close();//closes socket connection
 			} catch (IOException e) {
-				//e.printStackTrace();
 				System.out.print("Connection Lost \n");
 			}
 		}
