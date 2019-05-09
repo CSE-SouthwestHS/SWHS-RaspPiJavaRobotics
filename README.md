@@ -1,14 +1,21 @@
 This is not the full project code in this branch, the HTTP server, the camera server, all of the working website html/css/javascript, motor control have been left out, just what we are using to test sending variables has been included.
 
-How to run Java to Java, client and server:
-1. Set ip address in cli.java to whatever the local network ip address of the computer running the server ser.java (if both client and server are on the same computer leave ip as "localhost")
-2. After compiling both ser.java to ser.class and cli.java to cli.class, first run ser.class then run cli.class at the same time, wait until the connection establishes(can take about a minute for initial connection)
-3. First type a string of characters into server and press enter, then type a string of characters into Client
-4. Will send back and forth a string, the way it is set up right now is that it waits for a response before can send another
+##How to run Java to Java, client and server:
+1. After compiling both ser.java to ser.class and cli.java to cli.class, first run ser.class then run cli.class at the same time, wait until the connection establishes(can take about a minute for initial connection)
+2. First type a string of characters into server and press enter, then type a string of characters into Client
+3. Will send back and forth a string, the way it is set up right now is that it waits for a response before can send another
+4. (Optional) To test on two different computers, set ip address in cli.java to whatever the local network ip address of the computer running the server ser.java then re-compile. (If both client and server are on the same computer leave ip as "localhost")
 
-The current problem we are facing is sending a message (a string with no more than 8 characters) from a JavaScript client in a browser to a Java server on a Raspberry Pi 3. We then want the server to send error message strings back to the browser JavaScript client.
-At the moment we have a back and forth passing of strings between a Java server and a Java client using socket.io on a single port(see HelpRequestWebsocket/ser.java and HelpRequestWebsocket/cli.java).
-When we run a JavaScript client (HelpRequestWebsocket/push.js) through Node.js it communicates with WebSocket to the Java server (HelpRequestWebsocket/ser.java), but not in a way that we fully understand how to handle. The communication sent comes in the form of an HTTP request, which is received by the server as "GET / HTTP/1.1" (if we are attempting to send a string from client or not, whenever we run "connection.onopen" in HelpRequestWebsocket/push.js). Probably socket.io and WebSocket are incompatible, but the fact that we are getting something makes us think that once we figure out a response we could open up string pushing and listening on both sides.
+The current problem we are facing is sending and receiving strings from a JavaScript client in a browser to a Java server on a Raspberry Pi 3. 
+So 'cli.class' needs to be replaced with JavaScript that can run in a web browser.
+
+We can send from the client already but we want the server to send error message strings back to a JavaScript client.
+
+What you see here is a back and forth passing of strings between a Java server and a Java client using socket.io on a single port(see HelpRequestWebsocket/ser.java and HelpRequestWebsocket/cli.java).
+
+We looked at Node.js solutions but that would require Node server on both sides.  So we've been looking at Ajax options...
+
+===========================
 
 We can conceive of a solution in 3 ways. The first is the closest to where we are right now and is probably ideal:
 1. Is it possible to use socket.io with a JavaScript client and a socket.io Java server? If it is, could you give a simple working example that passes strings to and from the Java server and JavaScript client?
