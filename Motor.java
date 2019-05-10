@@ -33,7 +33,6 @@ public class Motor
             runTime.exec("gpio -g mode " + in2 + " out");
             runTime.exec("gpio -g write " + in1 + " 1");
             runTime.exec("gpio -g write " + in2 + " 0");
-            System.out.println(MotorSide + " " + in1 + " " + in2 + " " + enA);
         } catch (Exception e) {
             MotorController.errorHandler(e);
         }
@@ -43,15 +42,10 @@ public class Motor
         float finalSpeed = 0.0f;
         float absoluteValueSpeed = 0.0f;
         try {
-            if (speed > 1 || speed < -1) {
-                System.out.println("Please enter a value between 1 and -1");    //Add throw error
-            } else {
                 finalSpeed = (float) speed*pwmMax;
                 absoluteValueSpeed = (float) Math.abs(finalSpeed);
-                System.out.println("DEBUG: finalSpeed " + finalSpeed + ", " + absoluteValueSpeed);
                 if ((!direction && finalSpeed < 0) || (direction && finalSpeed > 0)) {      //checks to see the state of the direction boolean and the nature of the finalSpeed variable relative to zero to ensure that ramping from one direction to another is possible
                     if (finalSpeed < 0) {
-                        System.out.println("DEBUG: variableSpeed A");
                         ramp(0.0f);
                         pwmCurrent = 0;
                         reverse();
@@ -60,7 +54,6 @@ public class Motor
                         runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     } else {
-                        System.out.println("DEBUG: variableSpeed B");
                         ramp(0.0f);
                         pwmCurrent = 0;
                         forward();
@@ -71,20 +64,17 @@ public class Motor
                     }
                 } else {
                     if (finalSpeed < 0) {
-                        System.out.println("DEBUG: variableSpeed C");
                         ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
                         runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     } else {
-                        System.out.println("DEBUG: variableSpeed D");
                         ramp(absoluteValueSpeed);
                         pwmCurrent = absoluteValueSpeed;
                         runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
                         Thread.sleep(250);
                     }
             }
-        }
         } catch (Exception e) {
             MotorController.errorHandler(e);
         }
@@ -97,7 +87,6 @@ public class Motor
             if(Math.abs(difference) > (rampRequire*pwmMax)){
                 calculating = difference/stepNumber;
                 boolean valueIncreasing = calculating > 0;
-                System.out.println("Starting Move From " + pwmCurrent + " To " + directionalSpeed + ", Step Size: " + calculating);
                 while(pwmCurrent != directionalSpeed) {
                     if(valueIncreasing) {
                         if(pwmCurrent >= directionalSpeed) {
@@ -111,12 +100,10 @@ public class Motor
                         }
                     }
                     runTime.exec("gpio -g pwm "+ enA + " " + (pwmCurrent + calculating));
-                    System.out.println(pwmCurrent);
                     pwmCurrent += calculating;
                     Thread.sleep(20);
                 }
             } else{
-                System.out.println("Set " + directionalSpeed);
                 //Ramping not required
             }
         } catch (Exception e) {
