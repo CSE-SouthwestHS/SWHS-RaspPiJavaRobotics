@@ -7,7 +7,7 @@ import java.net.Socket;
 
 
 public class ser {
-	
+
 	public static void main(String[] args) throws IOException, InterruptedException {
 		new Thread(new SimpleServer()).start();
 	}
@@ -64,13 +64,16 @@ public class ser {
 					System.exit(-1);
 				}
 				if (line != null){
-					System.out.println(sb.toString());
+					String coordinateData = sb.toString();
+					String filteredonce = coordinateData.replace("HTTP/1.1","");
+					String filteredtwice = filteredonce.replace("GET /?","");
+					System.out.println(filteredtwice);
 					//serverSession = null;
 				}
 				try {
 					if (in.readLine() == null){
+						//System.out.println("Client Disconected"+serverSession);
 						serverSession = null;
-						System.out.println("Client Disconected");
 					}
 				} catch (IOException e) {
 					System.out.println("Bad data \n");

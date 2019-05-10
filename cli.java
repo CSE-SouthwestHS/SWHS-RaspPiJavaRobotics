@@ -18,8 +18,8 @@ public class cli {
 		PrintStream out = null;
 		int PORT = 5000;
 		String IP = "10.55.162.1";
-		int X = 0;
-		int Y = 0;
+		int x = 0;
+		int y = 0;
 		boolean ServerOpen = false;
 		boolean Reported = false;
 		boolean EmittingCoordinates = false;
@@ -68,9 +68,9 @@ public class cli {
 			while (EmittingCoordinates == true){
 				try {
 					Thread.sleep(30);
-					out.println(X + "," + Y);
-					X++;
-					Y++;
+					out.println(x + "," + y);
+					x++;
+					y++;
 				} catch (Exception e) {
 					System.out.println("Variable Failed");
 				}

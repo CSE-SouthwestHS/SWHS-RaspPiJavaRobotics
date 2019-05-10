@@ -3,25 +3,32 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <script src="VJS.js"></script>
+    <script src="#" type="javascript"></script>
+    <script src="bundle.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script>
-      var socket = io('http://localhost:5000');
-      socket.on('connection', function (){
-        document.getElementById("status").innerHTML = "Connected";
-      });
-      function send(){
+      function load(){
+        var x = 20,
+            y = 50;
         xy = document.getElementById("XYvalues").value,
-          statusData = document.getElementById("status").value,
-          socket = io('http://localhost:5000');
-        socket.emit('connection', {transmitterData: xy});
+        statusData = document.getElementById("status").value;
+        document.getElementById("status").innerHTML = statusData+'\n'+xy;
+        var coordinates = xy.split(',', 2),
+        x = coordinates[0],
+        y = coordinates[1];
+        const socket = new WebSocket("ws://10.55.162.1:5000?"+x+","+y);
+        //socket.emit('connection', {transmitterData: xy});
         /*
         Textbox for logging client side joystick values.
         To view textareas : change css, #XYvalues and #status remove "display: none";
         */
-        document.getElementById("status").innerHTML = statusData+'\n'+xy;
       }
+    </script>
+    <script>
+
     </script>
 	</head>
 	<body>
@@ -30,7 +37,7 @@
 		<div id="container">
       <canvas width="60" height="60" style="position: absolute; left: 202px; top: 180px; display: none;"></canvas>
       <canvas width="40" height="40" style="position: absolute; left: 223px; top: 200px; display: none;"></canvas>
-  		<iframe id="picam" src="http://10.55.168.34:8081/stream.mjpg" onerror="alert('Failed')" frameborder="0">
+  		<iframe id="picam" src="http://10.55.168.34:8081/stream.mjpg" frameborder="0">
   			<p>Unable to broadcast.</p>
   		</iframe>
     </div>
@@ -47,11 +54,11 @@
         newCoordinates = document.getElementById('XYvalues').value;
         if (newCoordinates == lastCoordinates){
         } else {
-          send();
+          load();
           lastCoordinates = newCoordinates;
           textarea.scrollTop = textarea.scrollHeight;
         }
-      }, 30);
+      }, 250);
 		</script>
   </body>
 </html>
