@@ -17,7 +17,7 @@ public class MotorController {
         motorLeft.init();
         motorRight.init();
     }
-    public static void main(String[] args) { //This Is a Temporary Startup Function
+    /*public static void main(String[] args) { //This Is a Temporary Startup Function
         Startup.run();
         // Begin demo code
         speedAdapter(0, 0);
@@ -32,7 +32,7 @@ public class MotorController {
                 MotorController.errorHandler(e);
             }
         }
-    }
+    }*/
     public static void errorHandler(Exception ex) {
         System.out.println("Exception occured: " + ex.getMessage());
     }
@@ -54,7 +54,6 @@ public class MotorController {
         float w = (100-Math.abs(y))*(xInvert/100) + xInvert;
         float r = (v+w)/200;
         float l = (v-w)/200;
-        System.out.println(l + " " + r);
         Thread threadL = new Thread(new Runnable() {
            @Override 
            public void run(){
