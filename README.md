@@ -2,16 +2,28 @@
 
 ### Presented by [CSE-SouthwestHS](https://github.com/CSE-SouthwestHS)
 
-To our knowledge, this is the first ever project based robotics curriculum for both AP computer science applications test prep and robotics.
+To our knowledge, this is the first ever complete, open-source curriculum project addressing both AP CSA (Computer Science Applications) and Robotics.  
+**Our Mission** to provide an accessible entry point to Robotics programming for students and instructors of College Level Java.
 
-These materials where developed by the southwest high school computer science students:
+**What Makes This Project Unique**
+- Completely self contained.  There are no materials, code, products, or research that are not provided or listed in this repository.
+- Low cost.  The robotics hardware in the price list can be purchased for less than $220
+- Ready for use for students and instructors.  All hardware interface programming is already complete with well documented APIs for higher abstraction development.
 
-- Themis @Themis3000 web development and rasp pi OS deployment and configuration
-- William @williammunnich
-- David @dhocken32
-- @smue1901
-- @mynusplus
-- Seay @Cephi495
+# HELP REQUEST
+This code is under development.  It is fully functional but suffers from significant latency.
+If you would like to contribute solutions or improvements to this project, please see the issues posted on the
+**[HELP REQUEST BRANCH](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics/blob/HelpRequestWebsocket/README.md)**.
+Contributors will be recognized and appreciated.
+
+####The project concept and materials where developed by the following Southwest High School Computer Science students:
+
+- Themis @Themis3000 - web development / rasp pi OS configuration and deployment
+- William @williammunnich - control system server back end developer
+- David @dhocken32 - motor control hardware interface developer
+- @smue1901 - robot hardware developer
+- @mynusplus - project & quality assurance manager
+- Seay @Cephi495 - control system GUI and front end developer
 - @rfspringer
 
 
@@ -29,36 +41,4 @@ Item | Price
 [BQLZR Black Front Rear Pentagram Plastic Wheel Rims + High Grip Rubber Tires Tyres for RC 1:10 Off-Road Car Buggy Pack of 4](https://www.amazon.com/BQLZR-Black-Pentagram-Plastic-Rubber/dp/B00ID51M9W/ref=sr_1_3?ie=UTF8&qid=1540165190&sr=8-3&keywords=rc+car+wheel)|$14.30
 [4pcs XT60 Plug Male Female Connector with Sheath Housing Connector with 150mm 12AWG Silicon Wire for RC Lipo Battery FPV Drone](https://www.amazon.com/Female-Connector-Housing-Silicon-Battery/dp/B073QJWVVK?crid=3Q2VQ882VEEU4&keywords=xt60+connector&qid=1540842493&sprefix=xt+60%2Caps%2C176&sr=8-7&ref=sr_1_7)|$8.99
 [4pcs XT60 Plug Male Female Connector with Sheath Housing Connector with 150mm 12AWG Silicon Wire for RC Lipo Battery FPV Drone](https://www.amazon.com/iGaging-Electronic-Digital-Fractions-Stainless/dp/B001AQEZ2W/ref=sr_1_4?ie=UTF8&qid=1540933218&sr=8-4&keywords=igaging+caliper)|$28.95
-Total|maths inserted here
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Total|$197.90
