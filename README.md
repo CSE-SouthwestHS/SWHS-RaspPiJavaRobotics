@@ -1,8 +1,8 @@
 # UPDATE 5/14/2019
 
-## The master branch is not fully functional!
+## The master branch is now fully functional!
 
-## Now the only problem is latency.
+## Now, the only problem is latency.
 
 If you would like to lend a hand, please checkout the master branch.  
 Instructions to run the program are there.
