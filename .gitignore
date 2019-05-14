@@ -34,6 +34,8 @@ captures/
 
 # IntelliJ
 *.iml
+*.iws
+*.ipr
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
@@ -41,6 +43,7 @@ captures/
 .idea/dictionaries
 .idea/libraries
 .idea/caches
+.idea/
 
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.
@@ -63,8 +66,89 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
-/.metadata/
-/.recommenders/
 
-# IntelliJ
-/.idea*
+#BlueJ
+*.bluej
+*.ctxt
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.classpath
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# OS
+.DS_Store
+.Trashes
+.fseventsd/
+.Trashes/
+._*
+.FBC*
+.Spotlight-V100
+.TemporaryItems
+
+# Jekyll
+# Note:  Do not add _config.yml to .gitignore
+# This file contains the GitHub Site configuration
