@@ -1,2 +1,0 @@
-INDEX VERSION 1.130+C:\Users\sen\Documents\GitHub\SWHS-RaspPiJavaRobotics\.metadata\.plugins\org.eclipse.jdt.core
-659062737.index
