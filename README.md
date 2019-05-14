@@ -16,7 +16,7 @@ If you would like to contribute solutions or improvements to this project, pleas
 **[HELP REQUEST BRANCH](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics/blob/HelpRequestWebsocket/README.md)**.
 Contributors will be recognized and appreciated.
 
-####The project concept and materials where developed by the following Southwest High School Computer Science students:
+### The project concept and materials where developed by the following Southwest High School Computer Science students:
 
 - Themis @Themis3000 - web development / rasp pi OS configuration and deployment
 - William @williammunnich - control system server back end developer
