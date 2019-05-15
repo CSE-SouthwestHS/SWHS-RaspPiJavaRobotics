@@ -102,6 +102,12 @@ public class SimpleHttpServer {
                 String yCoordinate = params.getOrDefault("y","0");
 
                 retval = "Ok, " + sName + ". You want me to " + sCommand + " by (" + xCoordinate +"," + yCoordinate +")";
+                xValue = xCoordinate;
+                yValue = yCoordinate;
+                xFinal = Float.parseFloat(xValue);
+                yFinal = Float.parseFloat(yValue);
+                MotorController.speedAdapter(xFinal, yFinal); //this is what connects to motor controller, only works on raspberry pi with this code running
+
             }
             else
             {
