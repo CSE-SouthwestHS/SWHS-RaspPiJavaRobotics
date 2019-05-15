@@ -7,7 +7,7 @@ To our knowledge, this is the first ever complete, open-source curriculum projec
 
 **What Makes This Project Unique**
 - Completely self contained.  There are no materials, code, products, or research that are not provided or listed in this repository.
-- Low cost.  The robotics hardware in the price list can be purchased for less than $220
+- Low cost.  The robotics hardware in the price list can be purchased for less than $200
 - Ready for use for students and instructors.  All hardware interface programming is already complete with well documented APIs for higher abstraction development.
 
 # HELP REQUEST
@@ -16,16 +16,20 @@ If you would like to contribute solutions or improvements to this project, pleas
 **[HELP REQUEST BRANCH](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics/blob/HelpRequestWebsocket/README.md)**.
 Contributors will be recognized and appreciated.
 
+## Credits
 ### The project concept and materials where developed by the following Southwest High School Computer Science students:
 
 - Themis @Themis3000 - web development / rasp pi OS configuration and deployment
 - William @williammunnich - control system server back end developer
 - David @dhocken32 - motor control hardware interface developer
 - @smue1901 - robot hardware developer
-- @mynusplus - project & quality assurance manager
+- [Aidan Dostal](http://dostal.tech/) @mynusplus - project & quality assurance manager
 - Seay @Cephi495 - control system GUI and front end developer
-- @rfspringer
 
+
+# GETTING STARTED GUIDE
+### Running the Program
+Coming Soon...
 
 ### Parts List
 
