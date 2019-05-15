@@ -6,12 +6,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class ser {
+public class serMotorDemo {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         new Thread(new SimpleServer()).start();
     }
-    
+
     static class SimpleServer implements Runnable {
         public void run(){
             ServerSocket socketServer = null;
@@ -23,7 +23,7 @@ public class ser {
             int PORT = 5000;
             boolean ServerOpen = false;
             boolean Reported = false;
-            
+
             String xValue, yValue;
             Float xFinal, yFinal;
             MotorController.initMotorController();
@@ -72,7 +72,7 @@ public class ser {
                     String filteredTwice = filteredonce.replace("GET /?","");
                     System.out.println(filteredTwice);
                     //serverSession = null;
-                    
+
                     xValue = filteredTwice.substring(0,filteredTwice.indexOf(","));
                     yValue = filteredTwice.substring((filteredTwice.indexOf(",") + 1));
                     xFinal = Float.parseFloat(xValue);
