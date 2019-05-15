@@ -75,10 +75,6 @@ public class JavaHTTPServer implements Runnable{
 
             // get first line of the request from the client
             String input = in.readLine();
-            String rawCoordinateData = input;
-            String filteredOnce = rawCoordinateData.replace("GET /?","");
-            String filteredTwice = filteredOnce.replace(" HTTP/1.1","");
-            System.out.println(filteredTwice);
             // we parse the request with a string tokenizer
             StringTokenizer parse = new StringTokenizer(input);
             String method = parse.nextToken().toUpperCase(); // we get the HTTP method of the client
@@ -138,7 +134,7 @@ public class JavaHTTPServer implements Runnable{
                 }
 
                 if (verbose) {
-                    //System.out.println("File " + fileRequested + " of type " + content + " returned");
+                    System.out.println("File " + fileRequested + " of type " + content + " returned");
                 }
 
             }
@@ -211,7 +207,10 @@ public class JavaHTTPServer implements Runnable{
         dataOut.flush();
 
         if (verbose) {
-            //System.out.println(fileRequested);
+            String coordinateData = fileRequested;
+            String filtered = coordinateData.replace("/?","");
+            //String filteredTwice = filteredonce.replace(" not found","");
+            System.out.println(filtered);
         }
     }
 
