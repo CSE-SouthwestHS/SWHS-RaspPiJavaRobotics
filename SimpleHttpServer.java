@@ -32,10 +32,11 @@ public class SimpleHttpServer {
     private static void simpleHttpRequestHandler(HttpExchange simpleHttpExchange) throws IOException{
         try {
             URI simpleRequestURI = simpleHttpExchange.getRequestURI();
-            log("Received Request at " + simpleRequestURI.toString());
+            String receivedCoordinates = simpleRequestURI.toString()
+            //log("Received Request at " + receivedCoordinates);
             String response = processSimpleRequest(simpleHttpExchange);
             String simpleHttpResponse = response;
-            log("Sending response \"" + response + "\" to caller");
+            //log("Sending response \"" + response + "\" to caller");
             simpleHttpExchange.sendResponseHeaders(200, simpleHttpResponse.getBytes().length);
             OutputStream simpleOutputStream = simpleHttpExchange.getResponseBody();
             simpleOutputStream.write(simpleHttpResponse.getBytes());
@@ -86,7 +87,7 @@ public class SimpleHttpServer {
             }
 
             if(query!=null && (query.length()>0)) {
-                log("QUERY: " + query);
+                //log("QUERY: " + query);
                 //Try to get the keys and values that were passed in the request and print them
                 Map<String, String> params = getQueryMap(query);
                 if (params != null) {
