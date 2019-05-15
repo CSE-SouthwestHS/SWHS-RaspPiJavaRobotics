@@ -102,6 +102,7 @@ public class SimpleHttpServer {
                 String yCoordinate = params.getOrDefault("y","0");
 
                 retval = "Ok, " + sName + ". You want me to " + sCommand + " by (" + xCoordinate +"," + yCoordinate +")";
+
                 xValue = xCoordinate;
                 yValue = yCoordinate;
                 xFinal = Float.parseFloat(xValue);

@@ -14,14 +14,13 @@
         margin: 0;
         background-color: #151B30;
       }
-      form{
-        width: auto;
-        position: auto;
+      #coordinatesForm{
+        /*display: none;*/
+      }
+      #coordinatesFormDiv{
+        position: fixed;
+        bottom: 0;
         display: none;
-        margin-left: auto;
-        margin-right: auto;
-        color: white;
-        background-color: white;
       }
       #XYvalues{
         border: none;
@@ -35,11 +34,12 @@
         display: none;
       }
       #container{
+        background: transparent;
         text-align: center;
         color: transparent;
         font-family: monospace;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         overflow: hidden;
         padding: 0;
         margin: 0;
@@ -572,15 +572,17 @@
       <canvas width="40" height="40" style="position: absolute; left: 223px; top: 200px; display: none;"></canvas>
   		<iframe id="picam" frameborder="0"></iframe>
     </div>
-    <form id='coordinatesForm'action='http://10.55.170.99:5000/'>
-      <table>
-        <tr>
-          <td><input id='xCoordinate' type='number' min='-400' max='400' name='X'/></td>
-          <td><input id='yCoordinate' type='number' min='-400' max='400' name='Y'/></td>
-          <td><input id='sendCoordinates' type='submt'/></td>
-        </tr>
-      </table>
-    </form>
+    <div id='coordinatesFormDiv'>
+      <form id='coordinatesForm'action='http://10.55.170.99:5000/'>
+        <table>
+          <tr>
+            <td><input id='xCoordinate' type='number' min='-400' max='400' name='X'/></td>
+            <td><input id='yCoordinate' type='number' min='-400' max='400' name='Y'/></td>
+            <td><input id='sendCoordinates' type='submt'/></td>
+          </tr>
+        </table>
+      </form>
+    </div>
 		<script>
       //In-app Joystick implementation & Coordinate logging
       var lastCoordinates = document.getElementById('XYvalues').value,
