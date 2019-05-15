@@ -32,7 +32,7 @@ public class SimpleHttpServer {
     private static void simpleHttpRequestHandler(HttpExchange simpleHttpExchange) throws IOException{
         try {
             URI simpleRequestURI = simpleHttpExchange.getRequestURI();
-            String receivedCoordinates = simpleRequestURI.toString()
+            String receivedCoordinates = simpleRequestURI.toString();
             //log("Received Request at " + receivedCoordinates);
             String response = processSimpleRequest(simpleHttpExchange);
             String simpleHttpResponse = response;
@@ -96,18 +96,20 @@ public class SimpleHttpServer {
                     }
                 }
 
+                String xValue, yValue;
+                Float xFinal, yFinal;
                 String sName = params.getOrDefault("name","Unknown");
                 String sCommand = params.getOrDefault("command","do nothing");
                 String xCoordinate = params.getOrDefault("x","0");
                 String yCoordinate = params.getOrDefault("y","0");
 
                 retval = "Ok, " + sName + ". You want me to " + sCommand + " by (" + xCoordinate +"," + yCoordinate +")";
-
                 xValue = xCoordinate;
                 yValue = yCoordinate;
                 xFinal = Float.parseFloat(xValue);
                 yFinal = Float.parseFloat(yValue);
-                MotorController.speedAdapter(xFinal, yFinal); //this is what connects to motor controller, only works on raspberry pi with this code running
+                MotorController.speedAdapter(xFinal, yFinal);
+                //this is what connects to motor controller, only works on raspberry pi with this code running
 
             }
             else
@@ -122,6 +124,7 @@ public class SimpleHttpServer {
 
     public static Map<String, String> getQueryMap(String query)
     {
+
         String[] params = query.split("&");
         Map<String, String> map = new HashMap<String, String>();
         for (String param : params)
