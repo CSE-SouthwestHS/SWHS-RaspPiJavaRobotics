@@ -499,6 +499,7 @@ VirtualJoystick.prototype._check3D = function()
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script>
+      var serverIP = localhost; //change if connecting from phone/computer that is not running motor server
       function load(){
         var x = 20,
             y = 50;
@@ -508,7 +509,7 @@ VirtualJoystick.prototype._check3D = function()
         var coordinates = xy.split(',', 2),
         x = coordinates[0],
         y = coordinates[1];
-        const socket = new WebSocket("ws://10.55.161.236:5000?"+xy);
+        const socket = new WebSocket("ws://"+ serverIP +":5000?"+xy);
         //socket.emit('connection', {transmitterData: xy});
         /*
         Textbox for logging client side joystick values.
