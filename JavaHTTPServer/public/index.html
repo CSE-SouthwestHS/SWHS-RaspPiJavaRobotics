@@ -117,6 +117,78 @@
       }
     </style>
     <script>
+      //Picam Appearance
+      $(document).ready(function(){
+        $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
+        picamPing();
+      });
+      function picamPing(){
+        $.ajax({
+          url: "http://10.55.168.34:8081/stream.mjpg",
+          type: "HEAD",
+          timeout:3000,
+          statusCode: {
+            200: function (response) {
+              picamLoaded();
+              //alert('Working!');
+            },
+            400: function (response) {
+              picamFailed();
+              //alert('Not working!');
+            },
+            0: function (response) {
+              picamFailed();
+              //alert('Not working!');
+            }
+          }
+        });
+      }
+      function picamLoaded(){
+        $("#picam").css("border-width", "2px");
+        $("#picam").css("border-color", "#58B865");
+        $("#picam").css("border-style", "solid");
+      }
+      function picamFailed(){
+        $("#container").css("color", "white");
+        $("#picam").css("border-width", "2px");
+        $("#picam").css("border-style", "solid");
+        $("#picam").css("animation", "failedPicam 2s infinite");
+      }
+    </script>
+    <script>/*
+      //Detect if drone is online
+      setInterval(function() {
+        dronePing();
+      }, 10 * 1000);
+      function dronePing(){
+        $.ajax({
+          url: "http://10.55.161.236:5000",
+          type: "HEAD",
+          timeout:1000,
+          statusCode: {
+            200: function (response) {
+              droneLive();
+              //alert('Drone is live');
+            },
+            400: function (response) {
+              droneDead();
+              //alert('Drone is dead');
+            },
+            0: function (response) {
+              droneDead();
+              //alert('Drone is dead');
+            }
+          }
+        });
+      }
+      function droneLive(){
+
+      }
+      function droneDead(){
+
+      }*/
+    </script>
+    <script>
       //Virtual joystick functionality
 
       var VirtualJoystick	= function(opts)
@@ -539,29 +611,6 @@
           return exports;
       }
     </script>
-    <script>
-      //Picam Appearance
-      var iframeError;
-      $(document).ready(function(){
-        $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
-        iframeError = setTimeout(error, 2000);
-      });
-      $(document).ready(function () {
-        document.getElementById("picam").addEventListener("load", picamLoaded());
-      });
-      function picamLoaded(){
-        clearTimeout(iframeError);
-        $("#picam").css("border-width", "2px");
-        $("#picam").css("border-color", "#3B4282");
-        $("#picam").css("border-style", "solid");
-      }
-      function error() {
-        $("#container").css("color", "white");
-        $("#picam").css("border-width", "2px");
-        $("#picam").css("border-style", "solid");
-        $("#picam").css("animation", "failedPicam 2s infinite");
-      }
-    </script>
 	</head>
 	<body>
     <textarea id="XYvalues"></textarea>
@@ -606,7 +655,7 @@
       function load(){
         var xy = document.getElementById("XYvalues").value,
         statusData = document.getElementById("status").value;
-        document.getElementById("status").innerHTML = statusData+'\n'+xy;
+        //document.getElementById("status").innerHTML = statusData+'\n'+xy;
         document.getElementById("sendCoordinates").click();
         textarea.scrollTop = textarea.scrollHeight;
         /*
@@ -614,19 +663,19 @@
         To view textareas : change css, #XYvalues and #status remove "display: none";
         */
       }
-    </script>
-    <script>
       // this is the id of the submit button
       $("#sendCoordinates").click(function() {
         var url = "http://10.55.161.236:5000/"; // the script where you handle the form input.
         $.ajax({
-           type: "GET",
-           url: url,
-           data: $("#coordinatesForm").serialize(), // serializes the form's elements.
-           success: function(data)
-           {
-               //alert(data); // show response from the php script.
-           }
+          type: "GET",
+          url: url,
+          data: $("#coordinatesForm").serialize(), // serializes the form's elements.
+          success: function(data)
+          {
+            var statusData = document.getElementById("status").value;
+            document.getElementById("status").innerHTML = statusData+'\n'+data;
+            //alert(data); // coordinates received from server.
+          }
         });
         return false; // avoid to execute the actual submit of the form.
       });
