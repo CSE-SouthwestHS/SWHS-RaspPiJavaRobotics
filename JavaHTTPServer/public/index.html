@@ -120,13 +120,15 @@
       //Picam Appearance
       $(document).ready(function(){
         $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
-        picamPing();
+        setInterval(function(){
+          picamPing();
+        }, 2000);
       });
       function picamPing(){
         $.ajax({
           url: "http://10.55.168.34:8081/stream.mjpg",
           type: "HEAD",
-          timeout:3000,
+          timeout:1000,
           statusCode: {
             200: function (response) {
               picamLoaded();
@@ -616,7 +618,7 @@
     <textarea id="XYvalues"></textarea>
     <textarea id="status" readonly="readonly"></textarea>
 		<div id="container">
-      Camera Failed
+      Camera Offline
       <canvas width="60" height="60" style="position: absolute; left: 202px; top: 180px; display: none;"></canvas>
       <canvas width="40" height="40" style="position: absolute; left: 223px; top: 200px; display: none;"></canvas>
   		<iframe id="picam" frameborder="0"></iframe>
