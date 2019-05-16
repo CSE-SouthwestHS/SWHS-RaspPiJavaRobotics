@@ -120,40 +120,50 @@
       //Picam Appearance
       $(document).ready(function(){
         $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
-        $("#picam").attr("onload","picamLoaded()");
+        //$("#picam").attr("onload","picamLoaded()");
         picamPing();
       });
       function picamPing(){
-        $.ajax({
-          url: "http://10.55.168.34:8081/stream.mjpg",
-          type: "HEAD",
-          timeout:500,
-          statusCode: {
-            200: function (response) {
-              var statusData = document.getElementById("status").value;
-              document.getElementById("status").innerHTML = statusData+"\nPicam Success";
-              picamLoaded();
-              //alert('Working!');
-            },
-            400: function (response) {
-              var statusData = document.getElementById("status").value;
-              document.getElementById("status").innerHTML = statusData+"\nPicam Error";
-              picamFailed();
-              //alert('Not working!');
-            },
-            0: function (response) {
-              var statusData = document.getElementById("status").value;
-              document.getElementById("status").innerHTML = statusData+"\nPicam Error";
-              picamFailed();
-              //alert('Not working!');
+        setInterval(function(){
+          $.ajax({
+            url: "http://10.55.168.34:8081/stream.mjpg",
+            type: "HEAD",
+            timeout:2000,
+            statusCode: {
+              200: function (response) {
+                var statusData = document.getElementById("status").value;
+                document.getElementById("status").innerHTML = statusData+"\nPicam Success";
+                picamLoaded();
+                $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
+                textarea.scrollTop = textarea.scrollHeight;
+                //alert('Working!');
+              },
+              400: function (response) {
+                var statusData = document.getElementById("status").value;
+                document.getElementById("status").innerHTML = statusData+"\nPicam Error";
+                picamFailed();
+                $("#picam").attr("src", "");
+                textarea.scrollTop = textarea.scrollHeight;
+                //alert('Not working!');
+              },
+              0: function (response) {
+                var statusData = document.getElementById("status").value;
+                document.getElementById("status").innerHTML = statusData+"\nPicam Error";
+                picamFailed();
+                $("#picam").attr("src", "");
+                textarea.scrollTop = textarea.scrollHeight;
+                //alert('Not working!');
+              }
             }
-          }
-        });
+          });
+        }, 3000);
       }
       function picamLoaded(){
         $("#picam").css("border-width", "2px");
         $("#picam").css("border-color", "#58B865");
         $("#picam").css("border-style", "solid");
+        $("#container").css("color", "transparent");
+        $("#picam").css("animation", "");
       }
       function picamFailed(){
         $("#container").css("color", "white");
