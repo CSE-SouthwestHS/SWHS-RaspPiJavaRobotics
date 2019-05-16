@@ -130,14 +130,20 @@
             timeout:500,
             statusCode: {
               200: function (response) {
+                var statusData = document.getElementById("status").value;
+                document.getElementById("status").innerHTML = statusData+"\nPicam Success";
                 picamLoaded();
                 //alert('Working!');
               },
               400: function (response) {
+                var statusData = document.getElementById("status").value;
+                document.getElementById("status").innerHTML = statusData+"\nPicam Error";
                 picamFailed();
                 //alert('Not working!');
               },
               0: function (response) {
+                var statusData = document.getElementById("status").value;
+                document.getElementById("status").innerHTML = statusData+"\nPicam Error";
                 picamFailed();
                 //alert('Not working!');
               }
