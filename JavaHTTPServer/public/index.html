@@ -120,30 +120,30 @@
       //Picam Appearance
       $(document).ready(function(){
         $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
-        setInterval(function(){
-          picamPing();
-        }, 2000);
+        picamPing();
       });
       function picamPing(){
-        $.ajax({
-          url: "http://10.55.168.34:8081/stream.mjpg",
-          type: "HEAD",
-          timeout:1000,
-          statusCode: {
-            200: function (response) {
-              picamLoaded();
-              //alert('Working!');
-            },
-            400: function (response) {
-              picamFailed();
-              //alert('Not working!');
-            },
-            0: function (response) {
-              picamFailed();
-              //alert('Not working!');
+        setInterval(function(){
+          $.ajax({
+            url: "http://10.55.168.34:8081/stream.mjpg",
+            type: "HEAD",
+            timeout:500,
+            statusCode: {
+              200: function (response) {
+                picamLoaded();
+                //alert('Working!');
+              },
+              400: function (response) {
+                picamFailed();
+                //alert('Not working!');
+              },
+              0: function (response) {
+                picamFailed();
+                //alert('Not working!');
+              }
             }
-          }
-        });
+          });
+        }, 1000);
       }
       function picamLoaded(){
         $("#picam").css("border-width", "2px");
