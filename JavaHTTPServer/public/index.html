@@ -573,7 +573,7 @@
   		<iframe id="picam" frameborder="0"></iframe>
     </div>
     <div id='coordinatesFormDiv'>
-      <form id='coordinatesForm'action='http://10.55.170.99:5000/'>
+      <form id='coordinatesForm'action='http://10.55.161.236:5000/'>
         <table>
           <tr>
             <td><input id='xCoordinate' type='number' min='-400' max='400' name='X'/></td>
@@ -602,7 +602,7 @@
           lastCoordinates = newCoordinates;
           load();
         }
-      }, 30);
+      }, 300);
       function load(){
         var xy = document.getElementById("XYvalues").value,
         statusData = document.getElementById("status").value;
@@ -618,7 +618,7 @@
     <script>
       // this is the id of the submit button
       $("#sendCoordinates").click(function() {
-        var url = "http://10.55.170.99:5000/"; // the script where you handle the form input.
+        var url = "http://10.55.161.236:5000/"; // the script where you handle the form input.
         $.ajax({
            type: "GET",
            url: url,

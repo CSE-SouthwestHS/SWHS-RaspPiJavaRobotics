@@ -3,13 +3,13 @@ import java.util.*;
 public class Motor
 {
     //in1 and in2 set direction as follows (1,1 = not used; 1,0 = forward; 0,1 = reverse; 0,0 = stop)
-    private int in1 = 2;                    //Sets the number of control pin 1 (controls direction) state is on or off 
+    private int in1 = 2;                    //Sets the number of control pin 1 (controls direction) state is on or off
     private boolean direction = false;       //Does not set direction, only tracks. Change boolean everytime direction flips
     private int in2 = 4;                    //Sets the number of control pin 2 (controls direction) state is on or off
     private int enA= 12;                    //Sets the number of the pwm pin (controls motor speed)
     private float pwmMax = 4000;            //Sets the maximum value the pwm pin can be set to
     private float pwmCurrent = 0;           //Sets the initial value of the pwm pin
-    private float rampRequire = .3f;
+    private float rampRequire = 1.0f;       //Was .3f , 1.0f results in no ramping, decimal value less than 1.0f required for ramping
     private String MotorSide = "Not set!";
     private Runtime runTime = Runtime.getRuntime();
 
@@ -26,7 +26,7 @@ public class Motor
         try {
             runTime.exec("gpio -g mode " + enA + " pwm");
             runTime.exec("gpio -g pwm-ms");
-            runTime.exec("gpio -g pwmc 205"); 
+            runTime.exec("gpio -g pwmc 205");
             runTime.exec("gpio -g pwmr " + pwmMax);
             runTime.exec("gpio -g pwm " + enA + " " + pwmCurrent);
             runTime.exec("gpio -g mode " + in1 + " out");

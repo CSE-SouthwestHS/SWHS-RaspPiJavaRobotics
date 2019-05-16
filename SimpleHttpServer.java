@@ -1,4 +1,3 @@
-package com.eafx.net;
 
 import com.sun.net.httpserver.*;
 
@@ -14,16 +13,17 @@ public class SimpleHttpServer {
     private static Logger logger = Logger.getLogger(SimpleHttpServer.class.getName());
 
     public static void main(String[] args) throws IOException {
-        int PORT = 5000;
+        MotorController.initMotorController();
         try {
-            HttpServer simpleHttpServer = HttpServer.create(new InetSocketAddress(PORT), 0);
+            HttpServer simpleHttpServer = HttpServer.create(new InetSocketAddress(5000), 0);
             //log("Started on Port 5000");
             HttpContext simpleHtpContext = simpleHttpServer.createContext("/");
             //log("Created the HttpContext on \"/\"");
             simpleHtpContext.setHandler(SimpleHttpServer::simpleHttpRequestHandler);
-            log("Server Listening on port: "+ PORT);
+            log("Starting the SimpleHttpServer...");
+            simpleHttpServer.start();
         }catch (IOException ex){
-            logger.log(Level.SEVERE,"Server Failed");
+            logger.log(Level.SEVERE,"Encountered IOException. " +  ex.getMessage());
         }catch(Exception ex){
             logger.log(Level.SEVERE, "Encountered Generic Java Exception. " + ex.getMessage());
         }
@@ -33,10 +33,10 @@ public class SimpleHttpServer {
         try {
             URI simpleRequestURI = simpleHttpExchange.getRequestURI();
             String receivedCoordinates = simpleRequestURI.toString();
-            //log("Received Request at " + receivedCoordinates);
+            log("Recieved Request at " + simpleRequestURI.toString());
             String response = processSimpleRequest(simpleHttpExchange);
             String simpleHttpResponse = response;
-            //log("Sending response \"" + response + "\" to caller");
+            log("Sending response \"" + response + "\" to caller");
             simpleHttpExchange.sendResponseHeaders(200, simpleHttpResponse.getBytes().length);
             OutputStream simpleOutputStream = simpleHttpExchange.getResponseBody();
             simpleOutputStream.write(simpleHttpResponse.getBytes());
@@ -87,7 +87,7 @@ public class SimpleHttpServer {
             }
 
             if(query!=null && (query.length()>0)) {
-                //log("QUERY: " + query);
+                log("QUERY: " + query);
                 //Try to get the keys and values that were passed in the request and print them
                 Map<String, String> params = getQueryMap(query);
                 if (params != null) {
@@ -98,19 +98,22 @@ public class SimpleHttpServer {
 
                 String xValue, yValue;
                 Float xFinal, yFinal;
-                String sName = params.getOrDefault("name","Unknown");
-                String sCommand = params.getOrDefault("command","do nothing");
+                //String sName = params.getOrDefault("name","Unknown");
+                //String sCommand = params.getOrDefault("command","do nothing");
                 String xCoordinate = params.getOrDefault("x","0");
                 String yCoordinate = params.getOrDefault("y","0");
 
-                retval = "Ok, " + sName + ". You want me to " + sCommand + " by (" + xCoordinate +"," + yCoordinate +")";
+                xCoordinate = query.substring((query.indexOf("X") + 2), query.indexOf("&"));
+                yCoordinate = query.substring((query.indexOf("Y") + 2));
+                
+                retval = xCoordinate +"," + yCoordinate;
                 xValue = xCoordinate;
                 yValue = yCoordinate;
                 xFinal = Float.parseFloat(xValue);
                 yFinal = Float.parseFloat(yValue);
+                log("motor starting");
                 MotorController.speedAdapter(xFinal, yFinal);
-                //this is what connects to motor controller, only works on raspberry pi with this code running
-
+                log("motor finished");
             }
             else
             {
@@ -124,7 +127,6 @@ public class SimpleHttpServer {
 
     public static Map<String, String> getQueryMap(String query)
     {
-
         String[] params = query.split("&");
         Map<String, String> map = new HashMap<String, String>();
         for (String param : params)

@@ -1,5 +1,0 @@
-#  --- GitHub Jekyll Site Configuration --- #
-
-theme: jekyll-theme-midnight
-plugins:
-  - jekyll-mentions
