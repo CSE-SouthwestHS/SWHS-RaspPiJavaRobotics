@@ -121,10 +121,11 @@
       $(document).ready(function(){
         $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
         //$("#picam").attr("onload","picamLoaded()");
-        picamPing();
+        //picamPing();
+        picamLoaded();
       });
       function picamPing(){
-        setInterval(function(){
+        //setInterval(function(){
           $.ajax({
             url: "http://10.55.168.34:8081/stream.mjpg",
             type: "HEAD",
@@ -156,7 +157,7 @@
               }
             }
           });
-        }, 3000);
+        //}, 3000);
       }
       function picamLoaded(){
         $("#picam").css("border-width", "2px");
@@ -171,39 +172,6 @@
         $("#picam").css("border-style", "solid");
         $("#picam").css("animation", "failedPicam 2s infinite");
       }
-    </script>
-    <script>/*
-      //Detect if drone is online
-      setInterval(function() {
-        dronePing();
-      }, 10 * 1000);
-      function dronePing(){
-        $.ajax({
-          url: "http://10.55.161.236:5000",
-          type: "HEAD",
-          timeout:1000,
-          statusCode: {
-            200: function (response) {
-              droneLive();
-              //alert('Drone is live');
-            },
-            400: function (response) {
-              droneDead();
-              //alert('Drone is dead');
-            },
-            0: function (response) {
-              droneDead();
-              //alert('Drone is dead');
-            }
-          }
-        });
-      }
-      function droneLive(){
-
-      }
-      function droneDead(){
-
-      }*/
     </script>
     <script>
       //Virtual joystick functionality
@@ -682,7 +650,7 @@
       }
       // this is the id of the submit button
       $("#sendCoordinates").click(function() {
-        var url = "http://10.55.161.236:5000/"; // the script where you handle the form input.
+        var url = "http://10.55.162.1:5000/"; // the script where you handle the form input.
         $.ajax({
           type: "GET",
           url: url,
