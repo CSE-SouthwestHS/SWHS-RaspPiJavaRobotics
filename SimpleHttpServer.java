@@ -105,7 +105,7 @@ public class SimpleHttpServer {
 
                 xCoordinate = query.substring((query.indexOf("X") + 2), query.indexOf("&"));
                 yCoordinate = query.substring((query.indexOf("Y") + 2));
-
+                
                 retval = xCoordinate +"," + yCoordinate;
                 xValue = xCoordinate;
                 yValue = yCoordinate;
