@@ -119,10 +119,10 @@
     <script>
       //Picam Appearance
       $(document).ready(function(){
-        $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
-        //$("#picam").attr("onload","picamLoaded()");
-        //picamPing();
         picamLoaded();
+        //$("#picam").attr("onload","picamLoaded()");
+        $("#picam").attr("src", "http://10.55.168.34:8081/stream.mjpg");
+        //picamPing();
       });
       function picamPing(){
         //setInterval(function(){
@@ -650,7 +650,7 @@
       }
       // this is the id of the submit button
       $("#sendCoordinates").click(function() {
-        var url = "http://10.55.162.1:5000/"; // the script where you handle the form input.
+        var url = "http://10.55.161.236:5000/"; // the script where you handle the form input.
         $.ajax({
           type: "GET",
           url: url,
