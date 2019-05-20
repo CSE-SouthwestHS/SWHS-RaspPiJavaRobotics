@@ -18,9 +18,25 @@
         /*display: none;*/
       }
       #coordinatesFormDiv{
-        position: fixed;
+        top: 0;
+        position: absolute;
+
         bottom: 0;
         display: none;
+      }
+      #dronestatus{
+
+      }
+      #dot{
+        height: 15px;
+        width: 15px;
+        background-color: white;
+        border-radius: 50%;
+        position: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid white;
       }
       #XYvalues{
         border: none;
@@ -640,6 +656,7 @@
       <canvas width="60" height="60" style="position: absolute; left: 202px; top: 180px; display: none;"></canvas>
       <canvas width="40" height="40" style="position: absolute; left: 223px; top: 200px; display: none;"></canvas>
   		<iframe id="picam" frameborder="0"></iframe>
+      <div id="dronestatus"><span id="dot"></span></div>
     </div>
     <div id='coordinatesFormDiv'>
       <form id='coordinatesForm'action='http://10.55.161.236:5000/'>
@@ -694,6 +711,10 @@
           success: function(data){
             document.getElementById("status").innerHTML = statusData+'\n'+data;
             //alert(data); // coordinates received from server.
+            $("#dot").css("background", "green");
+          },
+          error: function(data){
+            $("#dot").css("background", "#E6515F");
           }
         });
         return false; // avoid to execute the actual submit of the form.
