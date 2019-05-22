@@ -33,10 +33,10 @@ public class SimpleHttpServer {
         try {
             URI simpleRequestURI = simpleHttpExchange.getRequestURI();
             String receivedCoordinates = simpleRequestURI.toString();
-            log("Recieved Request at " + simpleRequestURI.toString());
+            //log("Recieved Request at " + simpleRequestURI.toString());
             String response = processSimpleRequest(simpleHttpExchange);
             String simpleHttpResponse = response;
-            log("Sending response \"" + response + "\" to caller");
+            //log("Sending response \"" + response + "\" to caller");
             simpleHttpExchange.sendResponseHeaders(200, simpleHttpResponse.getBytes().length);
             OutputStream simpleOutputStream = simpleHttpExchange.getResponseBody();
             simpleOutputStream.write(simpleHttpResponse.getBytes());
@@ -87,7 +87,7 @@ public class SimpleHttpServer {
             }
 
             if(query!=null && (query.length()>0)) {
-                log("QUERY: " + query);
+                //log("QUERY: " + query);
                 //Try to get the keys and values that were passed in the request and print them
                 Map<String, String> params = getQueryMap(query);
                 if (params != null) {
@@ -105,19 +105,23 @@ public class SimpleHttpServer {
 
                 xCoordinate = query.substring((query.indexOf("X") + 2), query.indexOf("&"));
                 yCoordinate = query.substring((query.indexOf("Y") + 2));
-                
-                retval = xCoordinate +"," + yCoordinate;
+
+                retval = xCoordinate +","+ yCoordinate;
                 xValue = xCoordinate;
                 yValue = yCoordinate;
                 xFinal = Float.parseFloat(xValue);
                 yFinal = Float.parseFloat(yValue);
-                log("motor starting");
-                MotorController.speedAdapter(xFinal, yFinal);
-                log("motor finished");
+                //log("motor starting");
+                try{
+                  MotorController.speedAdapter(xFinal, yFinal);
+                } catch(Exception ex){
+                  log(ex.getMessage());
+                }
+                //log("motor finished");
             }
             else
             {
-                retval = "Ok. You didnt give me any commands...";
+                retval = "No coordinates";
             }
         }catch(Exception ex){
             logger.log(Level.WARNING, "Encountered Generic Java Exception. " + ex.getMessage());

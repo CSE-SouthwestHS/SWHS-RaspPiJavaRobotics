@@ -20,12 +20,16 @@
       #coordinatesFormDiv{
         top: 0;
         position: absolute;
-
         bottom: 0;
         display: none;
       }
-      #dronestatus{
-
+      #version{
+        font-size: 12px;
+        left: 6px;
+        bottom: 2px;
+        color: #9E99EE;
+        background: transparent;
+        position: absolute;
       }
       #dot{
         height: 15px;
@@ -36,7 +40,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        border: 2px solid white;
+        border: 1px solid white;
       }
       #XYvalues{
         border: none;
@@ -161,7 +165,7 @@
         picamPing();
       });
       function picamPing(){
-        var DroneEye = false,
+        var DroneEyeReport = "Live",
             camStatusData = document.getElementById("camstatus").value;
         picamIdle();
         setInterval(function(){
@@ -171,31 +175,28 @@
             timeout:2000,
             statusCode: {
               200: function (response) {
-                if(DroneEye == false){
+                if(DroneEyeReport == "Error0" || DroneEyeReport == "Error400"){
                   document.getElementById("camstatus").innerHTML = camStatusData+"\nDE Open";
-                  DroneEye = true;
-                }
+                  DroneEyeReport = "Live";                }
                 picamLoaded();
                 $("#picam").attr("src", "");
                 $("#picam").attr("src", picamURL);
                 textarea.scrollTop = textarea.scrollHeight;
               },
               400: function (response) {
-                if(DroneEye == true){
-                  document.getElementById("camstatus").innerHTML = camStatusData+"\nDE Closed";
-                  DroneEye = false;
+                if(DroneEyeReport == "Live" || DroneEyeReport == "Error0"){
+                  document.getElementById("camstatus").innerHTML = camStatusData+"\nDE Closed"+"\nError0";
+                  DroneEyeReport = "Error400";
                 }
                 picamFailed();
-                //$("#picam").attr("src", "");
                 textarea.scrollTop = textarea.scrollHeight;
               },
               0: function (response) {
-                if(DroneEye == true){
-                  document.getElementById("camstatus").innerHTML = camStatusData+"\nDE Closed";
-                  DroneEye = false;
+                if(DroneEyeReport == "Live" || DroneEyeReport == "Error400"){
+                  document.getElementById("camstatus").innerHTML = camStatusData+"\nDE Closed"+"\nError400";
+                  DroneEyeReport = "Error0";
                 }
                 picamFailed();
-                //$("#picam").attr("src", "");
                 textarea.scrollTop = textarea.scrollHeight;
               }
             }
@@ -657,14 +658,15 @@
       <canvas width="40" height="40" style="position: absolute; left: 223px; top: 200px; display: none;"></canvas>
   		<iframe id="picam" frameborder="0"></iframe>
       <div id="dronestatus"><span id="dot"></span></div>
+      <div id="version">v.2.12</div>
     </div>
-    <div id='coordinatesFormDiv'>
-      <form id='coordinatesForm'action='http://10.55.161.236:5000/'>
+    <div id="coordinatesFormDiv">
+      <form id="coordinatesForm" action="http://192.168.7.31:5000/">
         <table>
           <tr>
-            <td><input id='xCoordinate' type='number' min='-400' max='400' name='X'/></td>
-            <td><input id='yCoordinate' type='number' min='-400' max='400' name='Y'/></td>
-            <td><input id='sendCoordinates' type='submt'/></td>
+            <td><input id="xCoordinate" type='number' min='-400' max='400' name='X'/></td>
+            <td><input id="yCoordinate" type='number' min='-400' max='400' name='Y'/></td>
+            <td><input id="sendCoordinates" type='submt'/></td>
           </tr>
         </table>
       </form>
@@ -675,7 +677,7 @@
           textarea = document.getElementById('status');
   		console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
   		var joystick	= new VirtualJoystick({
-  				container: document.getElementById('co‰ntainer'),
+  				container: document.getElementById('container'),
   				mouseSupport: true,
   		});
 			setInterval(function(){
@@ -702,7 +704,7 @@
       }
       // this is the id of the submit button
       $("#sendCoordinates").click(function() {
-        var droneURL = "http://10.55.161.236:5000/", // the script where you handle the form input.
+        var droneURL = "http://192.168.7.31:5000/", // the script where you handle the form input.
             statusData = document.getElementById("status").value;
         $.ajax({
           type: "GET",
@@ -710,11 +712,10 @@
           data: $("#coordinatesForm").serialize(), // serializes the form's elements.
           success: function(data){
             document.getElementById("status").innerHTML = statusData+'\n'+data;
-            //alert(data); // coordinates received from server.
-            $("#dot").css("background", "green");
+            $("#dot").css("background", "#58B865");
           },
           error: function(data){
-            $("#dot").css("background", "#E6515F");
+            $("#dot").css("background", "#E34238");
           }
         });
         return false; // avoid to execute the actual submit of the form.
