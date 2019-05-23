@@ -18,9 +18,9 @@ import java.util.StringTokenizer;
 public class JavaHTTPServer implements Runnable{
 
 	static final File WEB_ROOT = new File(".");
-	static final String DEFAULT_FILE = "index.html";
-	static final String FILE_NOT_FOUND = "404.html";
-	static final String METHOD_NOT_SUPPORTED = "not_supported.html";
+	static final String DEFAULT_FILE = "public_html/index.html";
+	static final String FILE_NOT_FOUND = "public_html/404.html";
+	static final String METHOD_NOT_SUPPORTED = "public_html/not_supported.html";
 	// port to listen connection
 	static final int PORT = 80;
 
