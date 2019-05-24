@@ -708,13 +708,23 @@
             statusData = document.getElementById("status").value;
         $.ajax({
           type: "GET",
+          crossDomain: true,
+          async: true,
           url: droneURL,
           data: $("#coordinatesForm").serialize(), // serializes the form's elements.
+          xhrFields: {
+            withCredentials: true
+          },
+          headers: {
+              "accept": "application/json",
+              "Access-Control-Allow-Origin":"*"
+          },
           success: function(data){
             document.getElementById("status").innerHTML = statusData+'\n'+data;
             $("#dot").css("background", "#58B865");
           },
-          error: function(data){
+          error: function(xhr, status){
+            //alert(status);
             $("#dot").css("background", "#E34238");
           }
         });

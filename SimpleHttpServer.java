@@ -20,7 +20,7 @@ public class SimpleHttpServer {
             HttpContext simpleHtpContext = simpleHttpServer.createContext("/");
             //log("Created the HttpContext on \"/\"");
             simpleHtpContext.setHandler(SimpleHttpServer::simpleHttpRequestHandler);
-            log("Starting the SimpleHttpServer...");
+            log("Starting Coordinate Receiver");
             simpleHttpServer.start();
         }catch (IOException ex){
             logger.log(Level.SEVERE,"Encountered IOException. " +  ex.getMessage());
@@ -33,10 +33,10 @@ public class SimpleHttpServer {
         try {
             URI simpleRequestURI = simpleHttpExchange.getRequestURI();
             String receivedCoordinates = simpleRequestURI.toString();
-            //log("Recieved Request at " + simpleRequestURI.toString());
+            //log("Recieved Request at " + receivedCoordinates);
             String response = processSimpleRequest(simpleHttpExchange);
             String simpleHttpResponse = response;
-            //log("Sending response \"" + response + "\" to caller");
+            //log("Sending response: " + response + " to caller");
             simpleHttpExchange.sendResponseHeaders(200, simpleHttpResponse.getBytes().length);
             OutputStream simpleOutputStream = simpleHttpExchange.getResponseBody();
             simpleOutputStream.write(simpleHttpResponse.getBytes());
@@ -91,9 +91,9 @@ public class SimpleHttpServer {
                 //Try to get the keys and values that were passed in the request and print them
                 Map<String, String> params = getQueryMap(query);
                 if (params != null) {
-                    for (String key : params.keySet()) {
-                        log(key + "=" + params.get(key));
-                    }
+                  for (String key : params.keySet()) {
+                    log(key + "=" + params.get(key));
+                  }
                 }
 
                 String xValue, yValue;
@@ -115,7 +115,7 @@ public class SimpleHttpServer {
                 try{
                   MotorController.speedAdapter(xFinal, yFinal);
                 } catch(Exception ex){
-                  log(ex.getMessage());
+                  //log(ex.getMessage());
                 }
                 //log("motor finished");
             }
