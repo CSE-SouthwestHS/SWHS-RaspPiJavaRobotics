@@ -158,12 +158,6 @@
       }
     </style>
     <script>
-      var picamURL = "http://10.55.161.236:8081/stream.mjpg";
-      //Picam Appearance
-      $(document).ready(function(){
-        $("#picam").attr("src", picamURL);
-        picamPing();
-      });
       function picamPing(){
         var DroneEyeReport = "Live",
             camStatusData = document.getElementById("camstatus").value;
@@ -661,7 +655,7 @@
       <div id="version">v.2.12</div>
     </div>
     <div id="coordinatesFormDiv">
-      <form id="coordinatesForm" action="http://192.168.7.31:5000/">
+      <form id="coordinatesForm">
         <table>
           <tr>
             <td><input id="xCoordinate" type='number' min='-400' max='400' name='X'/></td>
@@ -672,6 +666,15 @@
       </form>
     </div>
 		<script>
+      var ip="http://10.55.161.236",
+          port=5000;
+      var picamURL = ip + ":8081/stream.mjpg";
+      //Picam Appearance
+      $(document).ready(function(){s
+        $("#picam").attr("src", picamURL);
+        $("#coordinatesForm").attr("action", ip +":"+port);
+        picamPing();
+      });
       //In-app Joystick implementation & Coordinate logging
       var lastCoordinates = document.getElementById('XYvalues').value,
           textarea = document.getElementById('status');
@@ -704,13 +707,12 @@
       }
       // this is the id of the submit button
       $("#sendCoordinates").click(function() {
-        var droneURL = "http://192.168.7.31:5000/", // the script where you handle the form input.
-            statusData = document.getElementById("status").value;
+        var statusData = document.getElementById("status").value;
         $.ajax({
           type: "GET",
           crossDomain: true,
           async: true,
-          url: droneURL,
+          url: ip+":"+port,
           data: $("#coordinatesForm").serialize(), // serializes the form's elements.
           xhrFields: {
             withCredentials: true
