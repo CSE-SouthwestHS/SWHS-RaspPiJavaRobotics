@@ -4,6 +4,7 @@
 
 To our knowledge, this is the first ever complete, open-source curriculum project addressing both AP CSA (Computer Science Applications) and Robotics.  
 **Our Mission** to provide an accessible entry point to Robotics programming for students and instructors of College Level Java.
+![robot-beta1](https://cse-southwesths.github.io/SWHS-RaspPiJavaRobotics/documentation/robot-beta1.jpg)
 
 **What Makes This Project Unique**
 - Completely self contained.  There are no materials, code, products, or research that are not provided or listed in this repository.
