@@ -30,11 +30,13 @@ Contributors will be recognized and appreciated!!!
 >- [Aidan Dostal](http://dostal.tech/) @mynusplus - Project & Quality Assurance Manager
 >- Themis @Themis3000 - Web Development / Rasp Pi OS Configuration and Deployment
 
-____________________________________________________________________________
+---
 
-#GETTING STARTED GUIDE
+# GETTING STARTED GUIDE
 >### - [INSTALLATION](documentation/GETTING_STARTED-INSTALLATION.md)
 >### - [RUNNING THE ROBOT](documentation/GETTING_STARTED-RUNNING.md)
+
+---
 
 # Parts List - ([Click to view on Amazon](http://a.co/cpzM4p2))
 
