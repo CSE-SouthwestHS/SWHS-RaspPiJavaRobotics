@@ -7,7 +7,7 @@ To our knowledge, this is the first ever complete, open-source curriculum projec
 
 _Our first beta version driving across campus_|_Robot Chassis Beta 2 Screenshot_
 :-----:|:------:
-![robot-beta1](https://cse-southwesths.github.io/SWHS-RaspPiJavaRobotics/documentation/robot-beta1.jpg)|![robot-beta2-screenshot](https://cse-southwesths.github.io/SWHS-RaspPiJavaRobotics/documentation/robot-beta2-screenshot.jpg)
+![robot-beta1](documentation/robot-beta1.jpg)|![robot-beta2-screenshot](documentation/robot-beta2-screenshot.jpg)
 
 **What Makes This Project Unique**
 - Completely self contained.  There are no materials, code, products, or research that are not provided or listed in this repository.
@@ -33,8 +33,8 @@ Contributors will be recognized and appreciated!!!
 ____________________________________________________________________________
 
 #GETTING STARTED GUIDE
->###- [INSTALLATION](documentation/GETTING_STARTED-INSTALLATION.md)
->###- [RUNNING THE ROBOT](documentation/GETTING_STARTED-RUNNING.md)
+>### - [INSTALLATION](documentation/GETTING_STARTED-INSTALLATION.md)
+>### - [RUNNING THE ROBOT](documentation/GETTING_STARTED-RUNNING.md)
 
 # Parts List - ([Click to view on Amazon](http://a.co/cpzM4p2))
 
