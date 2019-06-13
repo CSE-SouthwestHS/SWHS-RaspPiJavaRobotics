@@ -10,11 +10,15 @@ Install latest version of java onto raspberry pi:
 Now you need to change the JAVA_HOME so that the latest version runs in terminal.
 Navigate to the folder where the jdk you just installed is, should be in "/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt".
 
-Open terminal and navigate to /etc by typing the command:
+Open terminal and navigate to root by typing the command(typing "cd" brings you all the way back to the base of the folder tree no matter where you were located):
 
 - cd
 
-then:
+Then navigate the folder "etc":
+
+-cd /etc
+
+Then open the document "envirpnment" (sudo is required otherwise changes cannot be saved):
 
 - sudo leafpad /etc/environment
 
@@ -51,9 +55,10 @@ Run command:
 Then run command:
 
 - sudo apt-get upgrade
-
 Upgrade will take more than twenty minutes to execute.
-*note* Most school networks will block at least a portion of these installs so its best to be installing under a different  network or vpn from here on. If an instillation is ending by saying such and such was not installed then it means certain parts were blocked.
+<note>
+*Most school networks will block at least a portion of these installs so its best to be installing under a different  network or vpn from here on. If an instillation is ending by saying such and such was not installed then it means certain parts were blocked.*
+<note>
 
 Run command:
 
@@ -153,3 +158,16 @@ find the ip of the raspberry pi by typing the command:
 - ifconfig
 
 inside the file SWHS_RaspiJavaRobotics/public_html/index.html search, for "ip=", change the ip after "http://" to be the ip of your raspi on your wifi. Save and exit.
+
+## Setting up SSH for remote access and control
+Download SSH software with a GUI (I like the software "PuTTY") onto the computer you are using to connect to your Raspberry pi.
+
+Navigate to the configuration menu of your Raspberry pi by typing the following command into your terminal:
+
+- sudo rapi-config
+
+Then navigate to "Interfacing Options" using your arrow keys, press enter.
+
+Select SSH.
+
+When prompted with "Would you like the SSH server to be enabled", select yes.
