@@ -10,19 +10,19 @@ Install latest version of java onto raspberry pi:
 Now you need to change the JAVA_HOME so that the latest version runs in terminal.
 Navigate to the folder where the jdk you just installed is, should be in "/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt".
 
-Open terminal and navigate to root by typing the command(typing "cd" brings you all the way back to the base of the folder tree no matter where you were located):
+Open terminal and navigate to root by typing the command(typing "cd" brings you all the way back to the base of the folder tree no matter what folder you were located in previously):
 
 - cd
 
 Then navigate the folder "etc":
 
--cd /etc
+- cd /etc
 
-Then open the document "envirpnment" (sudo is required otherwise changes cannot be saved):
+Open the document "envirpnment" (sudo is required otherwise changes cannot be saved):
 
 - sudo leafpad /etc/environment
 
-you are now inside the document environment, type the filepath of the jdk:
+you are now inside the document "environment", type the filepath of the jdk:
 JAVA_HOME="/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt"
 Save and exit the document.
 
@@ -56,27 +56,30 @@ Then run command:
 
 - sudo apt-get upgrade
 Upgrade will take more than twenty minutes to execute.
-<note>
-*Most school networks will block at least a portion of these installs so its best to be installing under a different  network or vpn from here on. If an instillation is ending by saying such and such was not installed then it means certain parts were blocked.*
-<note>
+<note
+Most school networks will block at least a portion of these installs so its best to be installing under a different  network or vpn from here on. If an instillation is ending by saying such and such was not installed then it means certain parts were blocked.>
 
 Run command:
 
 - sudo apt-get install motion
 
-This will take a while. Run this command:
+This will take a while. Run this command(make sure you type a lowercase "L" not a "1"):
 
 - sudo modprobe bcm2835-v4l2
 
-Activate drivers by navigating into /etc/modules:
+Navigate to root:
+
+- cd
+
+Activate drivers by opening file "modules":
 
 - sudo leafpad /etc/modules
 
-Append the following line to the end of the file:
+Append the following line to the very end of the file:
 
 - bcm2835-v4l2
 
-Save file and close. Then open /etc/default/motion:
+Save file and close. Then open the document "motion":
 
 - sudo leafpad /etc/default/motion
 
@@ -94,28 +97,30 @@ run command:
 
 - sudo nano /etc/motion/motion.conf
 
-Change all of the  lines in the configuration file to be what is writtin below:
-Allow motion to run the daemon we've set earlier
+Change all of the lines in the configuration file to match the lines written below:
+
+Allow motion to run the daemon we've set earlier:
 - daemon on
 
-Set the logfile (important to debug motion if you webservers crashes)
+Set the logfile (important to debug motion if you webservers crashes):
 - logfile /tmp/motion.log
 
-we want to be able to access the stream outside off the Pi's localhost
+We want to be able to access the stream outside off the Pi's localhost:
 - stream_localhost off
 
-set the framerate of the stream (100 for higher quality)
+Set the framerate of the stream (100 for higher quality):
 - framerate 100
 
-set the width and height of your video
+Set the width and height of your video:
 - width 640
 - height 480
 
-control de port 8080 by default
+Control de port 8080 by default:
 - webcontrol_port 8081
 
-careful ! don't set the stream_port just like the webcontrol port
-- Save and exit
+Be careful not to set the stream_port to be just like the webcontrol port.
+
+Save and exit.
 
 Open /etc/init.d/motion by:
 
@@ -148,16 +153,19 @@ Change everything from "start)" to ";;" so it is exactly as follows:
         fi
         ;;
 
-Save and exit
+Save and exit.
 
 ### Setting up the motor control and website server code
 [download zip file of our code](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics)
-Unzip the file and move it to the root of the system
-find the ip of the raspberry pi by typing the command:
+Unzip the file and move it to the root of the system.
+
+Find the ip of the raspberry pi by typing the command:
 
 - ifconfig
 
-inside the file SWHS_RaspiJavaRobotics/public_html/index.html search, for "ip=", change the ip after "http://" to be the ip of your raspi on your wifi. Save and exit.
+inside the file SWHS_RaspiJavaRobotics/public_html/index.html search, for "ip=", change the ip after "http://" to be the ip of your raspi on your wifi.
+
+Save and exit.
 
 ## Setting up SSH for remote access and control
 Download SSH software with a GUI (I like the software "PuTTY") onto the computer you are using to connect to your Raspberry pi.
