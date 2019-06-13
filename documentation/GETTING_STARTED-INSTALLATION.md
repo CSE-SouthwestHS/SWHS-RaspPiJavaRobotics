@@ -55,9 +55,9 @@ Run command:
 Then run command:
 
 - sudo apt-get upgrade
+
 Upgrade will take more than twenty minutes to execute.
-*note*
-Most school networks will block at least a portion of these installs so its best to be installing under a different  network or vpn from here on. If an instillation is ending by saying such and such was not installed then it means certain parts were blocked.
+Most school networks will block at least a portion of these installs so its best to be installing under a different network or vpn from here on. If an instillation is finishing by saying "such and such was not installed" then it means certain parts were blocked.
 
 Run command:
 
