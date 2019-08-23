@@ -27,7 +27,7 @@ Contributors will be recognized and appreciated!!!
 >- Seay @Cephi495 - Control System GUI and Front end Developer
 >- David @dhocken32 - Motor Control Hardware Interface Developer
 >- @smue1901 - Robot Hardware Developer & PCA9685 Interface
->- [Aidan Dostal](http://dostal.tech/) @mynusplus - Project & Quality Assurance Manager
+>- [Aidan Dostal](http://dostal.tech/) @zozo1237 - Project & Quality Assurance Manager
 >- Themis @Themis3000 - Web Development / Rasp Pi OS Configuration and Deployment
 
 ---
