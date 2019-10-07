@@ -152,3 +152,6 @@ nb-configuration.xml
 # Jekyll
 # Note:  Do not add _config.yml to .gitignore
 # This file contains the GitHub Site configuration
+
+# Excel Temporary Files
+~$*.xlsx
