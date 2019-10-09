@@ -59,6 +59,8 @@ Item | Price
 [iMAX B6 Lipo RC Battery Balance Digital Charger](https://www.amazon.com/Haisito-Charger-Battery-Balance-Discharger/dp/B07QRQT3LC)|$31.99
 [Female to Female 4 and 8 Inch Solderless Ribbon Dupont-Compatible Jumper Wires for Breadboard](https://www.amazon.com/GenBasic-Solderless-Dupont-Compatible-Breadboard-Prototyping/dp/B01L5ULRUA)|$5.99
 Total|$252.62
-#### [Use the Equipment Auto Calculator at this link to determine the exact list for a specific number of Robots.](https://docs.google.com/spreadsheets/d/1HkJkBlFcnP8gTgiid0Fkntp9MTouEFqrl5WQc5pr8DA/edit?usp=sharing)
-*Price list Notes:
-The items in this list are the best options for each product that we have found to build a single robot.  There are a few items in this list which are packs containing more items than required for just one robot.  Also, if you plan to build multiple robots, in many cases, larger more cost effective packs can be found by searching for products.  This can make the cost of building multiple robots significantly lower.*
+
+- ### [Use the Equipment Auto Calculator at this link to determine the exact list for a specific number of Robots.](https://docs.google.com/spreadsheets/d/1HkJkBlFcnP8gTgiid0Fkntp9MTouEFqrl5WQc5pr8DA/edit?usp=sharing)
+*Price list Notes:*
+
+*The items in this list are the best options for each product that we have found to build a single robot.  There are a few items in this list which are packs containing more items than required for just one robot.  Also, if you plan to build multiple robots, in many cases, larger more cost effective packs can be found by searching for products.  This can make the cost of building multiple robots significantly lower.*
