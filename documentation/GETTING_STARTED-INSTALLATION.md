@@ -1,47 +1,46 @@
 # Getting Started
 ##Installation
 
-Install Raspbian OS image onto raspberry pi:
+First, install the Raspbian OS image onto your Raspberry pi.
 
-Install latest version of java onto raspberry pi:  
+Next, install the latest version of java onto your Raspberry pi:  
 
 - sudo apt-get install openjdk-8-jdk
 
 Now you need to change the JAVA_HOME so that the latest version runs in terminal.
-Navigate to the folder where the jdk you just installed is, should be in "/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt".
+Navigate to the folder where the jdk you just installed is (it should be in "/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt").
 
-Open terminal and navigate to root by typing the command(typing "cd" brings you all the way back to the base of the folder tree no matter what folder you were located in previously):
+Open terminal and navigate to root by typing "cd" (typing "cd" brings you all the way back to the base of the folder tree no matter what folder you were located in previously):
 
 - cd
 
-Then navigate the folder "etc":
+Then, navigate the folder "etc":
 
 - cd /etc
 
-Open the document "envirpnment" (sudo is required otherwise changes cannot be saved):
+Open the document "environment" (sudo is required otherwise changes cannot be saved):
 
 - sudo leafpad /etc/environment
 
-you are now inside the document "environment", type the filepath of the jdk:
-JAVA_HOME="/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt"
+You are now inside the document "environment". Type the filepath of the jdk:
+
+- JAVA_HOME="/usr/lib/jvm/jdk-8-oracle-arm32-vpm32-vpf-hflt"
+
 Save and exit the document.
 
 Check to make sure the development kit is set up right by typing the command:
 
 - java -version
 
-should print out as something that starts with 1.8
+It should print out as something that starts with 1.8.
 
 
 ###Install and configure Motion camera server
-enter command:
 
+Navigate back to the root folder by typing "cd", then enter the command:
 - sudo raspi-config
 
-choose Camera and select "Enable support for Raspberry Pi camera"
-
-reboot raspi:
-
+Choose Camera and select "Enable support for Raspberry Pi camera". The, reboot your raspi:
 - sudo shutdown -h now
 
 test camera command:
