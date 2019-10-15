@@ -1,0 +1,33 @@
+body {
+	overflow	: hidden;
+	padding		: 0;
+	margin		: 0;
+	background-color: #BBB;
+}
+
+#container {
+	width		: 100%;
+	height		: 100%;
+	overflow	: hidden;
+	padding		: 0;
+	margin		: 0;
+	z-index:10;
+}
+
+#frame{
+    top:0px;
+    left:0px;
+    height:100%;
+    width:100%;
+    position: absolute;
+    z-index:0;
+}
+
+#log{
+    top:0px;
+    left:0px;
+    height:100%;
+    width:100%;
+    position: absolute;
+    z-index:1;
+}
