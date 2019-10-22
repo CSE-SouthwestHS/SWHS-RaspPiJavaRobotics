@@ -15,13 +15,13 @@ _Our first beta version driving across campus_|_Robot Chassis Beta 2 Screenshot_
 - Ready for use for students and instructors.  All hardware interface programming is already complete with well documented APIs for higher abstraction development.
 
 # HELP REQUEST
-This code is (and probably always will be) under development.  It is fully functional but we invite anyone who would like to offer valuable improvements to please join us.  Fork the repository and send us your Pull Requests!
-Currently we are working to improve latency between the Front-end GUI, server, and PWM hardward interface.  Please see the issues posted on the
+This code is (and probably always will be) under development. It is fully functional, but we invite anyone who would like to offer valuable improvements to please join us. Fork the repository and send us your Pull Requests!
+Currently we are working to improve latency between the Front-end GUI, server, and PWM hardward interface. Please see the issues posted on the
 **[HELP REQUEST BRANCH](https://github.com/CSE-SouthwestHS/SWHS-RaspPiJavaRobotics/blob/HelpRequestWebsocket/README.md)**.
-Contributors will be recognized and appreciated!!!
+Contributors will be recognized and appreciated!
 
 # Credits
-### The project concept and materials where developed by the following Southwest High School Computer Science students:
+### The project concept and materials were developed by the following Southwest High School Computer Science students:
 
 >- William @williammunnich - Control System Server Back-end Developer
 >- Seay @Cephi495 - Control System GUI and Front end Developer
@@ -63,4 +63,4 @@ Total|$252.62
 - ### [Use the Equipment Auto Calculator at this link to determine the exact list for a specific number of Robots.](https://docs.google.com/spreadsheets/d/1HkJkBlFcnP8gTgiid0Fkntp9MTouEFqrl5WQc5pr8DA/edit?usp=sharing)
 *Price list Notes:*
 
-*The items in this list are the best options for each product that we have found to build a single robot.  There are a few items in this list which are packs containing more items than required for just one robot.  Also, if you plan to build multiple robots, in many cases, larger more cost effective packs can be found by searching for products.  This can make the cost of building multiple robots significantly lower.*
+*The items in this list are the best options for each product that we have found to build a single robot.  There are a few items in this list which are packs containing more items than required for just one robot. If you plan to build multiple robots, in many cases, larger & more cost effective packs can be found by searching for products.  This can make the cost of building multiple robots significantly lower.*
