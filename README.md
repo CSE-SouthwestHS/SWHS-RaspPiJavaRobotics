@@ -3,7 +3,7 @@
 ### Presented by [CSE-SouthwestHS](https://github.com/CSE-SouthwestHS)
 
 To our knowledge, this is the first ever complete, open-source curriculum project addressing both AP CSA (Computer Science Applications) and Robotics.  
-**Our Mission** to provide an accessible entry point to Robotics programming for students and instructors of College Level Java.
+**Our Mission** is to provide an accessible entry point to Robotics programming for students and instructors of College Level Java.
 
 _Our first beta version driving across campus_|_Robot Chassis Beta 2 Screenshot_
 :-----:|:------:
