@@ -16,7 +16,7 @@ setInterval(function(){
     var x = joystick.deltaX();
     var y = joystick.deltaY();
     if ((lastX != x) || (lastY != y)) {
-        socket.emit('stick_movement', {x: x, y: y});
+        socket.emit('stick_movement', {x: parseInt(x), y: parseInt(y)});
         lastX = x;
         lastY = y;
     }
