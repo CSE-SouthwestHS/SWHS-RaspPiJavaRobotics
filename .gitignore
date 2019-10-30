@@ -155,3 +155,4 @@ nb-configuration.xml
 
 # Excel Temporary Files
 ~$*.xlsx
+*.blend1
