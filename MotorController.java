@@ -11,6 +11,7 @@ public class MotorController {
   private static float Maxpwm = 4000;           //Sets the maximum pwm value for both motors
   private static Motor motorLeft;
   private static Motor motorRight;
+  static final boolean verbose = false;
   public static void initMotorController() {
       motorLeft = new Motor(directionPin1, directionPin2, pwmPin, Maxpwm, "Left");
       motorRight = new Motor(directionPin3, directionPin4, pwmPin2, Maxpwm, "Right");
@@ -34,8 +35,10 @@ public class MotorController {
       }
   }*/
   public static void errorHandler(Exception ex) {
-    System.out.println("Coordinates to Motor Failed");
     //System.out.println("Exception occured: " + ex.getMessage());
+    if (verbose){
+      System.out.println("Coordinates to Motor Failed");
+    }
   }
   public static void speedAdapter(float x, float y) {
     MotorController.initMotorController();
