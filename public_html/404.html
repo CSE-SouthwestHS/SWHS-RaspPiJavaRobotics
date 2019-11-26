@@ -3,11 +3,62 @@
 	<head>
 		<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>error404</title>
-		
+		<title>ERROR 404</title>
+		<style>
+			body{
+				overflow: hidden;
+				padding: 0;
+				margin: 0;
+				background-color: #151B30;
+			}
+			#container{
+				background: transparent;
+				text-align: center;
+				color: white;
+				font-family: monospace;
+				width: 100%;
+				height: 100vh;
+				padding: 0;
+				margin: 0;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+			}
+			#home_button{
+				position: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background: #5a40f7;
+        border-radius: 20%;
+        border-color: #c8d0f9;
+        color: #c8d0f9;
+			}
+			#home_button:hover{
+        background: #755eff;
+      }
+			@media(min-width:530px){
+				#container{
+					font-size: 22px;
+				}
+				#home_button{
+          font-size: 16px;
+        }
+			}
+			@media(max-width:530px){
+				#container{
+					font-size: 12px;
+				}
+				#home_button{
+          font-size: 10px;
+        }
+			}
+		</style>
 	</head>
 	<body>
-		
-	 <p>error404</p>
+	 <div id="container">
+		<p>ERROR 404</p>
+		<p>Page Not Found</p>
+		<button id="home_button" onclick="window.location.href = 'http://10.0.0.20:443';">Return</button>
+	 </div>
 	</body>
 </html>
